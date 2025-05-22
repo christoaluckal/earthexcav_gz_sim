@@ -25,6 +25,12 @@ def generate_launch_description():
         arguments=[default_model_path],
         name='joint_state_publisher',
     )
+
+    load_slew_controller = ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'effort_controller'],
+        output='screen'
+    )
+
     # joint_state_publisher_gui_node = Node(
     #     package='joint_state_publisher_gui',
     #     executable='joint_state_publisher_gui',
@@ -59,11 +65,13 @@ def generate_launch_description():
         DeclareLaunchArgument(name='model', default_value=default_model_path, description='Absolute path to robot model file'),
         DeclareLaunchArgument(name='use_sim_time', default_value='True', description='Flag to enable use_sim_time'),
         DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path, description='Absolute path to rviz config file'),
-        ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so', world_path], output='screen'),
+        ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'], output='screen'),
         joint_state_publisher_node,
         # joint_state_publisher_gui_node,
         robot_state_publisher_node,
         spawn_entity,
+        # controller_manager_node,
+        load_slew_controller,
         # robot_localization_node,
-        rviz_node
+        # rviz_node
     ])

@@ -444,13 +444,12 @@
     </link>
 
     <xacro:macro name="gazebo_joints">
-        <!-- <gazebo>
+        <gazebo>
             <joint>
                 <stiffness>100000.0</stiffness>   
-                <damping>5</damping>
+                <damping>1000</damping>
             </joint>
         </gazebo>
-        <joint_properties damping="5" friction="0.9"/> -->
     </xacro:macro>
 
     <joint name="left_spinning_wheel_joint" type="continuous">
@@ -584,11 +583,11 @@
     </joint> -->
 
     <joint name="slew" type="continuous">
-        <origin xyz="0 0 0" rpy="-5.5511151231419568159e-17 -1.1102230246202266528e-16 -3.1415" />
+        <origin xyz="0 0 0.1" rpy="-5.5511151231419568159e-17 -1.1102230246202266528e-16 -3.1415" />
         <parent link="turret_base" />
         <child link="cabin_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -628,7 +627,7 @@
         <parent link="swing_base" />
         <child link="boom_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" lower="-0.4" upper="0.4" />
+        <limit effort="1000" velocity="1" lower="-0.4" upper="0.4" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -644,54 +643,46 @@
     </joint>
 
     <!-- <gravity>1</gravity> -->
-<!-- 
+
     <ros2_control name="GazeboSystem" type="system">
-        <hardware>
-            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-        </hardware>
-        <joint name="head_swivel" />
-    </ros2_control> -->
+    <hardware>
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="slew">
+
+        <!-- <param name="pos_kp">10</param>
+        <param name="pos_ki">1</param>
+        <param name="pos_kd">2</param>
+        <param name="pos_max_integral_error">10000</param>
+
+        <param name="vel_kp">10</param>
+        <param name="vel_ki">5</param>
+        <param name="vel_kd">2</param>
+        <param name="vel_max_integral_error">10000</param> -->
+
+        <command_interface name="effort"/>
+        <!-- <command_interface name="velocity_pid"/> -->
+
+        <state_interface name="position">
+        </state_interface>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+    </joint>
+    <joint name="boom_to_swing">
+        <command_interface name="effort"/>
+        <state_interface name="position">
+        </state_interface>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+    </joint>
+    </ros2_control>
 
     <gazebo>
-        <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
-
-        <ros>
-          <!-- <namespace>/demo</namespace> -->
-          <argument>cmd_vel:=cmd_demo</argument>
-          <!-- <argument>odom:=odom</argument> -->
-        </ros>
-
-        <!-- Number of wheel pairs -->
-        <num_wheel_pairs>2</num_wheel_pairs>
-        
-        <!-- wheels0 -->
-        <left_joint>wheel_left_spinning</left_joint>
-        <right_joint>wheel_left_free</right_joint>
-
-        <!-- wheels1-->
-        <left_joint>wheel_right_spinning</left_joint>
-        <right_joint>wheel_right_free</right_joint>
-
-        <!-- kinematics -->
-        <wheel_separation>1.748</wheel_separation>
-        <wheel_separation>1.748</wheel_separation>
-
-        <wheel_diameter>${wheel_radius*2}</wheel_diameter>
-        <wheel_diameter>${wheel_radius*2}</wheel_diameter>
-
-        <!-- limits -->
-        <max_wheel_torque>500</max_wheel_torque>
-        <max_wheel_acceleration>1.0</max_wheel_acceleration>
-
-        <!-- output -->
-        <publish_odom>true</publish_odom>
-        <publish_odom_tf>true</publish_odom_tf>
-        <publish_wheel_tf>true</publish_wheel_tf>
-
-        <odometry_frame>odom</odometry_frame>
-        <robot_base_frame>base_link</robot_base_frame>
-
-      </plugin>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+            <robot_param>robot_description</robot_param>
+            <robot_param_node>robot_state_publisher</robot_param_node>
+            <parameters>$(find sambot_description)/params/ros2_controllers.yaml</parameters>
+        </plugin>
     </gazebo>
 
 </robot>
