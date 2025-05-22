@@ -457,7 +457,7 @@
         <parent link="left_spinning_wheel_link"/>
         <child link="wheel_left_spinning"/>
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20"/>
+        <limit effort="1000" velocity="1"/>
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -467,7 +467,7 @@
         <parent link="left_front_wheel_link"/>
         <child link="wheel_left_free"/>
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20"/>
+        <limit effort="1000" velocity="1"/>
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -478,7 +478,7 @@
         <parent link="right_spinning_wheel_link"/>
         <child link="wheel_right_spinning"/>
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20"/>
+        <limit effort="1000" velocity="1"/>
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -488,7 +488,7 @@
         <parent link="right_front_wheel_link"/>
         <child link="wheel_right_free"/>
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20"/>
+        <limit effort="1000" velocity="1"/>
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -520,7 +520,7 @@
         <parent link="turret_base" />
         <child link="cabin_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
     </joint> -->
 
     <joint name="left_spinning_wheel" type="continuous">
@@ -528,7 +528,7 @@
         <parent link="turret_base" />
         <child link="left_spinning_wheel_link" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -538,7 +538,7 @@
         <parent link="turret_base" />
         <child link="right_spinning_wheel_link" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -548,7 +548,7 @@
         <parent link="turret_base" />
         <child link="left_front_wheel_link" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -558,7 +558,7 @@
         <parent link="turret_base" />
         <child link="right_front_wheel_link" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -568,7 +568,7 @@
         <parent link="turret_base" />
         <child link="push_blade_bucket" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" lower="0.2" upper="0" />
+        <limit effort="1000" velocity="1" lower="0.2" upper="0" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -578,7 +578,7 @@
         <parent link="compact_excavator_turret_cabin_roller" />
         <child link="turret_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <joint_properties friction="0.0"/>
     </joint> -->
 
@@ -597,7 +597,7 @@
         <parent link="cabin_base" />
         <child link="compact_excavator_turret_cabin_roller" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" />
+        <limit effort="1000" velocity="1" />
         <joint_properties friction="0.0"/>
     </joint> -->
 
@@ -606,7 +606,7 @@
         <parent link="arm_base" />
         <child link="bucket_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" lower="-1.2217304763960306069" upper="0.87266462599716476678"/>
+        <limit effort="1000" velocity="1" lower="-1.2217304763960306069" upper="0.87266462599716476678"/>
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -616,7 +616,7 @@
         <parent link="boom_base" />
         <child link="arm_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" lower="-0.5" upper="1.57"/>
+        <limit effort="1000" velocity="1" lower="-0.5" upper="1.57"/>
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -637,7 +637,7 @@
         <parent link="cabin_base" />
         <child link="swing_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="1" velocity="20" lower="-1" upper="1.57" />
+        <limit effort="1000" velocity="1" lower="-1" upper="1.57" />
         <!-- <joint_properties friction="0.0"/> -->
         <xacro:gazebo_joints/>
     </joint>
@@ -683,6 +683,44 @@
             <robot_param_node>robot_state_publisher</robot_param_node>
             <parameters>$(find sambot_description)/params/ros2_controllers.yaml</parameters>
         </plugin>
+    </gazebo>
+
+    <!-- skidsteer -->
+     <gazebo>
+    <plugin name="two_wheeled_robot_diff_drive" filename="libgazebo_ros_diff_drive.so">
+        <ros>
+        </ros>
+
+        <!-- Number of wheel pairs -->
+        <num_wheel_pairs>2</num_wheel_pairs>
+
+        <!-- TODO fix the link names -->
+        
+        <!-- wheels0 -->
+        <left_joint>left_spinning_wheel_joint</left_joint>
+        <left_joint>left_passive_wheel_joint</left_joint>
+        <right_joint>right_spinning_wheel_joint</right_joint>
+        <right_joint>right_passive_wheel_joint</right_joint>
+
+        <!-- kinematics -->
+        <wheel_separation>1.25</wheel_separation>
+        <wheel_separation>1.25</wheel_separation>
+
+        <wheel_diameter>1.0</wheel_diameter>
+        <wheel_diameter>0.6</wheel_diameter>
+
+        <!-- limits -->
+        <max_wheel_torque>20</max_wheel_torque>
+        <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+        <!-- output -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_link</robot_base_frame>
+    </plugin>
     </gazebo>
 
 </robot>
