@@ -316,7 +316,7 @@
     <xacro:property name="rubber_density" value="1100"/>
     <xacro:property name="wheel_radius" value="0.25"/>
     <xacro:property name="wheel_length" value="0.2"/>
-    <xacro:property name="wheel_mass" value="${3.1415*(wheel_radius**2)*wheel_length*rubber_density}"/>
+    <xacro:property name="wheel_mass" value="${100*3.1415*(wheel_radius**2)*wheel_length*rubber_density}"/>
     <xacro:property name="wheel_ixx" value="${(1/12)*wheel_mass*(3*wheel_radius**2 + wheel_length**2)}"/>
     <xacro:property name="wheel_iyy" value="${(1/12)*wheel_mass*(3*wheel_radius**2 + wheel_length**2)}"/>
     <xacro:property name="wheel_izz" value="${(1/2)*wheel_mass*wheel_radius**2}"/>
@@ -454,7 +454,7 @@
         <gazebo>
             <joint>
                 <stiffness>1000.0</stiffness>   
-                <damping>5</damping>
+                <damping>500</damping>
             </joint>
         </gazebo>
     </xacro:macro>
@@ -547,7 +547,7 @@
     </joint>
 
 
-    <joint name="slew" type="continuous">
+    <joint name="excavator_slew" type="fixed">
         <origin xyz="0 0 0.1" rpy="-5.5511151231419568159e-17 -1.1102230246202266528e-16 -3.1415" />
         <parent link="turret_base" />
         <child link="cabin_base" />
@@ -602,9 +602,7 @@
                 <param name="min">-1000</param>
                 <param name="max">1000</param>
             </command_interface>
-            <state_interface name="position">
-                <param name="initial_value">0</param>
-            </state_interface>
+            <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
         </joint>
@@ -622,7 +620,7 @@
         </transmission>
     </xacro:macro>
 
-    <xacro:simple_transmission name="slew"/>
+    <xacro:simple_transmission name="excavator_slew"/>
     <xacro:simple_transmission name="plow_to_base"/>
     <xacro:simple_transmission name="arm_to_bucket"/>
     <xacro:simple_transmission name="boom_to_arm"/>
@@ -635,7 +633,7 @@
     <hardware>
         <plugin>gazebo_ros2_control/GazeboSystem</plugin>
     </hardware>
-    <xacro:gazebo_ros2_control_joints name="slew"/>
+    <xacro:gazebo_ros2_control_joints name="excavator_slew"/>
     <xacro:gazebo_ros2_control_joints name="plow_to_base"/>
     <xacro:gazebo_ros2_control_joints name="arm_to_bucket"/>
     <xacro:gazebo_ros2_control_joints name="boom_to_arm"/>
@@ -645,10 +643,7 @@
 
     <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-            <robot_param>robot_description</robot_param>
-            <robot_param_node>robot_state_publisher</robot_param_node>
             <parameters>$(find sambot_description)/params/ros2_controllers.yaml</parameters>
-            <controller_manager_prefix_node_name>controller_manager</controller_manager_prefix_node_name>
         </plugin>
     </gazebo>
 

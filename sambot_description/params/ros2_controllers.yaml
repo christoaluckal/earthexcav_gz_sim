@@ -2,21 +2,53 @@ controller_manager:
   ros__parameters:
     update_rate: 1000  # Hz
 
-    effort_controller:
+    excavator_slew_controller:
+      type: effort_controllers/JointGroupEffortController
+
+    plow_to_base_controller:
+      type: effort_controllers/JointGroupEffortController
+    
+    arm_to_bucket_controller:
+      type: effort_controllers/JointGroupEffortController
+    
+    boom_to_arm_controller:
+      type: effort_controllers/JointGroupEffortController
+    
+    swing_to_boom_controller:
+      type: effort_controllers/JointGroupEffortController
+
+    cabin_to_swing_controller:
       type: effort_controllers/JointGroupEffortController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-effort_controller:
+excavator_slew_controller:
   ros__parameters:
     joints:
-      - slew
+      - excavator_slew
+
+plow_to_base_controller:
+  ros__parameters:
+    joints:
       - plow_to_base
+
+arm_to_bucket_controller:
+  ros__parameters:
+    joints:
       - arm_to_bucket
+
+boom_to_arm_controller:
+  ros__parameters:
+    joints:
       - boom_to_arm
+
+swing_to_boom_controller:
+  ros__parameters:
+    joints:
       - swing_to_boom
+
+cabin_to_swing_controller:
+  ros__parameters:
+    joints:
       - cabin_to_swing
-    command_interfaces:
-      - effort
-  
