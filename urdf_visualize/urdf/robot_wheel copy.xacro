@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="onshape">
-    <link name="world"/>
+    <!-- <link name="world"/> -->
 
     <xacro:property name="mesh_root" value="package://urdf_visualize/meshes"/>
 
@@ -338,15 +338,158 @@
         </inertial>
     </link>
 
-    <joint name="world_to_base_link" type="fixed">
-        <parent link="world"/>
-        <child link="base_link"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+    <xacro:property name="rubber_density" value="1100"/>
+    <xacro:property name="wheel_radius" value="0.25"/>
+    <xacro:property name="wheel_length" value="0.2"/>
+    <xacro:property name="wheel_mass" value="${3.1415*(wheel_radius**2)*wheel_length*rubber_density}"/>
+    <xacro:property name="wheel_ixx" value="${(1/12)*wheel_mass*(3*wheel_radius**2 + wheel_length**2)}"/>
+    <xacro:property name="wheel_iyy" value="${(1/12)*wheel_mass*(3*wheel_radius**2 + wheel_length**2)}"/>
+    <xacro:property name="wheel_izz" value="${(1/2)*wheel_mass*wheel_radius**2}"/>
+
+    <link name="wheel_left_spinning">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${wheel_mass}"/>
+            <inertia ixx="${wheel_ixx}" ixy="0" ixz="0" iyy="${wheel_ixx}" iyz="0" izz="${wheel_ixx}"/>
+        </inertial>
+    </link>
+
+
+
+    <link name="wheel_left_free">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${wheel_mass}"/>
+            <inertia ixx="${wheel_ixx}" ixy="0" ixz="0" iyy="${wheel_ixx}" iyz="0" izz="${wheel_ixx}"/>
+        </inertial>
+    </link>
+
+  
+    <link name="wheel_right_spinning">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${wheel_mass}"/>
+            <inertia ixx="${wheel_ixx}" ixy="0" ixz="0" iyy="${wheel_ixx}" iyz="0" izz="${wheel_ixx}"/>
+        </inertial>
+    </link>
+
+
+
+    <link name="wheel_right_free">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${wheel_mass}"/>
+            <inertia ixx="${wheel_ixx}" ixy="0" ixz="0" iyy="${wheel_ixx}" iyz="0" izz="${wheel_ixx}"/>
+        </inertial>
+    </link>
+
+    <joint name="left_spinning_wheel_joint" type="continuous">
+        <origin xyz="0 0 -0.3" rpy="0 0 0"/>
+        <parent link="left_spinning_wheel_link"/>
+        <child link="wheel_left_spinning"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20"/>
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="left_passive_wheel_joint" type="continuous">
+        <origin xyz="0 0 0.3" rpy="0 0 0"/>
+        <parent link="left_front_wheel_link"/>
+        <child link="wheel_left_free"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20"/>
+        <joint_properties friction="0.0"/>
     </joint>
 
 
+    <joint name="right_spinning_wheel_joint" type="continuous">
+        <origin xyz="0 0 -0.3" rpy="0 0 0"/>
+        <parent link="right_spinning_wheel_link"/>
+        <child link="wheel_right_spinning"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20"/>
+        <joint_properties friction="0.0"/>
+    </joint>
+
+    <joint name="right_passive_wheel_joint" type="continuous">
+        <origin xyz="0 0 -0.3" rpy="0 0 0"/>
+        <parent link="right_front_wheel_link"/>
+        <child link="wheel_right_free"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="1" velocity="20"/>
+        <joint_properties friction="0.0"/>
+    </joint>
+
+
+    <!-- <joint name="world_to_base_link" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint> -->
+
+
     <joint name="base_to_turret" type="fixed">
-        <origin xyz="0 0 0.45" rpy="0 0 0" />
+        <origin xyz="0 0 0.55" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="turret_base" />
         <axis xyz="0 0 1"/>
@@ -476,5 +619,55 @@
         <joint_properties friction="0.0"/>
     </joint>
 
+    <gravity>1</gravity>
+
+    <ros2_control name="GazeboSystem" type="system">
+        <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+        <joint name="head_swivel" />
+    </ros2_control>
+
+    <gazebo>
+        <plugin name='skid_steer_drive' filename='libgazebo_ros_diff_drive.so'>
+
+        <ros>
+          <!-- <namespace>/demo</namespace> -->
+          <argument>cmd_vel:=cmd_demo</argument>
+          <!-- <argument>odom:=odom</argument> -->
+        </ros>
+
+        <!-- Number of wheel pairs -->
+        <num_wheel_pairs>2</num_wheel_pairs>
+        
+        <!-- wheels0 -->
+        <left_joint>wheel_left_spinning</left_joint>
+        <right_joint>wheel_left_free</right_joint>
+
+        <!-- wheels1-->
+        <left_joint>wheel_right_spinning</left_joint>
+        <right_joint>wheel_right_free</right_joint>
+
+        <!-- kinematics -->
+        <wheel_separation>1.748</wheel_separation>
+        <wheel_separation>1.748</wheel_separation>
+
+        <wheel_diameter>${wheel_radius*2}</wheel_diameter>
+        <wheel_diameter>${wheel_radius*2}</wheel_diameter>
+
+        <!-- limits -->
+        <max_wheel_torque>500</max_wheel_torque>
+        <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+        <!-- output -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_link</robot_base_frame>
+
+      </plugin>
+    </gazebo>
 
 </robot>

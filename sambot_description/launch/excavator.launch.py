@@ -9,7 +9,8 @@ import os
 
 def generate_launch_description():
     pkg_share = FindPackageShare(package='sambot_description').find('sambot_description')
-    default_model_path = os.path.join(pkg_share, 'src', 'description', 'sam_bot_description.xacro')
+    excavator_pkg = FindPackageShare(package='urdf_visualize').find('urdf_visualize')
+    default_model_path = os.path.join(excavator_pkg, 'urdf', 'robot_wheel.xacro')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz', 'config.rviz')
     world_path=os.path.join(pkg_share, 'world/my_world.sdf')
 
@@ -41,17 +42,17 @@ def generate_launch_description():
     spawn_entity = Node(
     package='gazebo_ros',
     executable='spawn_entity.py',
-    arguments=['-entity', 'sam_bot', '-topic', 'robot_description'],
+    arguments=['-entity', 'excavator', '-topic', 'robot_description'],
     output='screen'
     )
 
-    robot_localization_node = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_node',
-        output='screen',
-        parameters=[os.path.join(pkg_share, 'params/ekf.yaml'), {'use_sim_time': LaunchConfiguration('use_sim_time')}]
-    )
+    # robot_localization_node = Node(
+    #     package='robot_localization',
+    #     executable='ekf_node',
+    #     name='ekf_node',
+    #     output='screen',
+    #     parameters=[os.path.join(pkg_share, 'params/ekf.yaml'), {'use_sim_time': LaunchConfiguration('use_sim_time')}]
+    # )
 
     return LaunchDescription([
         # DeclareLaunchArgument(name='gui', default_value='True', description='Flag to enable joint_state_publisher_gui'),
@@ -63,6 +64,6 @@ def generate_launch_description():
         # joint_state_publisher_gui_node,
         robot_state_publisher_node,
         spawn_entity,
-        robot_localization_node,
+        # robot_localization_node,
         rviz_node
     ])
