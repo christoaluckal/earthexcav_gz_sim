@@ -547,7 +547,7 @@
     </joint>
 
 
-    <joint name="excavator_slew" type="fixed">
+    <joint name="excavator_slew" type="continuous">
         <origin xyz="0 0 0.1" rpy="-5.5511151231419568159e-17 -1.1102230246202266528e-16 -3.1415" />
         <parent link="turret_base" />
         <child link="cabin_base" />
