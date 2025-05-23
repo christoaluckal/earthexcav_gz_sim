@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="onshape">
     <!-- <link name="world"/> -->
 
-    <xacro:property name="mesh_root" value="file://$(find urdf_visualize)/meshes"/>
+    <!-- <xacro:property name="mesh_root" value="file://$(find urdf_visualize)/meshes"/>
 
     <xacro:property name="cabin_base_mesh" value="${mesh_root}/compact_excavator_cabin_body.stl"/>
     <xacro:property name="cabin_base_origin" value="0.1592 -0.2513 0.2814"/>
@@ -18,10 +18,9 @@
     <xacro:property name="turret_base_mass" value="459.1171"/>
     <xacro:property name="turret_base_inertial_origin" value="-0.0068 -0.1255 -0.1865"/>
     <xacro:property name="turret_base_inertial_rpy" value="0 0 0"/>
-    <xacro:property name="turret_base_material" value="0.9176 0.9176 0.9176 1.0"/>
+    <xacro:property name="turret_base_material" value="0.9176 0.9176 0.9176 1.0"/> -->
+    <xacro:include filename="$(find sambot_description)/urdf/params.xacro" />
 
-
-    <!-- Original base link -->
     <link name="base_link"/>
     <link name="cabin_base">
         <visual>
@@ -42,7 +41,16 @@
         <inertial>
             <origin xyz="${cabin_inertial_origin}" rpy="${cabin_inertial_rpy}"/>
             <mass value="${cabin_base_mass}" />
-            <inertia ixx="3175.1655302028038932" ixy="-269.97312494382822479"  ixz="167.61780128589879268" iyy="2627.6328649732372469" iyz="-193.85494965010886403" izz="3742.616047274826542" />
+            <!-- <inertia ixx="3175.1655302028038932" ixy="-269.97312494382822479"  ixz="167.61780128589879268" iyy="2627.6328649732372469" iyz="-193.85494965010886403" izz="3742.616047   274826542" /> -->
+            <inertia
+                ixx="${cabin_base_inertial.split()[0]}"
+                ixy="${cabin_base_inertial.split()[1]}"
+                ixz="${cabin_base_inertial.split()[2]}"
+                iyy="${cabin_base_inertial.split()[3]}"
+                iyz="${cabin_base_inertial.split()[4]}"
+                izz="${cabin_base_inertial.split()[5]}"
+            />
+            
         </inertial>
     </link>
     <link name="turret_base">
@@ -64,7 +72,14 @@
         <inertial>
             <origin xyz="${turret_base_inertial_origin}" rpy="${turret_base_inertial_rpy}"/>
             <mass value="${turret_base_mass}" />
-            <inertia ixx="103.54309263053609413" ixy="2.8689912175751035583"  ixz="-0.26918599165092144121" iyy="71.550382439979060223" iyz="-8.7881744003938315757" izz="164.71779214088334697" />
+            <inertia
+                ixx="${turret_base_inertial.split()[0]}"
+                ixy="${turret_base_inertial.split()[1]}"
+                ixz="${turret_base_inertial.split()[2]}"
+                iyy="${turret_base_inertial.split()[3]}"
+                iyz="${turret_base_inertial.split()[4]}"
+                izz="${turret_base_inertial.split()[5]}"
+            />
         </inertial>
     </link>
 
@@ -450,13 +465,15 @@
         </inertial>
     </link>
 
-    <xacro:macro name="gazebo_joints">
-        <gazebo>
-            <joint>
-                <stiffness>10.0</stiffness>   
-                <damping>5</damping>
-            </joint>
+    <xacro:macro name="gazebo_joint_dynamics" params="joint_name stiffness damping">
+        <gazebo reference="${joint_name}">
+            <stiffness>${stiffness}</stiffness>
+            <damping>${damping}</damping>
         </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="dynamics" params="dyn_damping dyn_friction">
+        <dynamics damping="${dyn_damping}" friction="${dyn_friction}"/>
     </xacro:macro>
 
     <joint name="left_spin_to_skid" type="fixed">
@@ -464,7 +481,7 @@
         <parent link="left_spinning_wheel_link"/>
         <child link="left_skid_wheel_spinning"/>
         <axis xyz="0 0 1"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="left_free_to_skid" type="fixed">
@@ -472,7 +489,7 @@
         <parent link="left_front_wheel_link"/>
         <child link="left_skid_wheel_free"/>
         <axis xyz="0 0 1"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
 
@@ -481,7 +498,7 @@
         <parent link="right_spinning_wheel_link"/>
         <child link="right_skid_wheel_spinning"/>
         <axis xyz="0 0 1"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="right_free_to_skid" type="fixed">
@@ -490,7 +507,7 @@
         <child link="right_skid_wheel_free"/>
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
 
@@ -507,7 +524,7 @@
         <child link="left_spinning_wheel_link" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="right_spinning_wheel" type="continuous">
@@ -516,7 +533,7 @@
         <child link="right_spinning_wheel_link" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="left_passive_wheel" type="continuous">
@@ -525,7 +542,7 @@
         <child link="left_front_wheel_link" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="right_passive_wheel" type="continuous">
@@ -534,7 +551,7 @@
         <child link="right_front_wheel_link" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="plow_to_base" type="revolute">
@@ -543,7 +560,7 @@
         <child link="push_blade_bucket" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" lower="0.2" upper="0" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
 
@@ -553,7 +570,7 @@
         <child link="cabin_base" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
 
@@ -563,7 +580,7 @@
         <child link="bucket_base" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" lower="-1.2217304763960306069" upper="0.87266462599716476678"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="boom_to_arm" type="revolute">
@@ -572,7 +589,7 @@
         <child link="arm_base" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" lower="-0.5" upper="1.57"/>
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
 
@@ -582,7 +599,7 @@
         <child link="boom_base" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" lower="-0.4" upper="0.4" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <joint name="cabin_to_swing" type="revolute">
@@ -591,16 +608,28 @@
         <child link="swing_base" />
         <axis xyz="0 0 1"/>
         <limit effort="10000" velocity="5" lower="-1" upper="1.57" />
-        <xacro:gazebo_joints/>
+        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
     </joint>
 
     <!-- <gravity>1</gravity> -->
 
-    <xacro:macro name="gazebo_ros2_control_joints" params="name">
+    <xacro:gazebo_joint_dynamics joint_name="excavator_slew" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="plow_to_base" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="arm_to_bucket" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="boom_to_arm" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="swing_to_boom" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="cabin_to_swing" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="left_spin_to_skid" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="left_free_to_skid" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="right_spin_to_skid" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="right_free_to_skid" stiffness="1000" damping="0.1"/>
+
+
+    <xacro:macro name="gazebo_ros2_control_joints" params="name effort_lim">
         <joint name="${name}">
             <command_interface name="effort">
-                <param name="min">-4000</param>
-                <param name="max">4000</param>
+                <param name="min">${-effort_lim}</param>
+                <param name="max">${effort_lim}</param>
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
@@ -630,15 +659,15 @@
 
 
     <ros2_control name="GazeboSystem" type="system">
-    <hardware>
-        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-    </hardware>
-    <xacro:gazebo_ros2_control_joints name="excavator_slew"/>
-    <xacro:gazebo_ros2_control_joints name="plow_to_base"/>
-    <xacro:gazebo_ros2_control_joints name="arm_to_bucket"/>
-    <xacro:gazebo_ros2_control_joints name="boom_to_arm"/>
-    <xacro:gazebo_ros2_control_joints name="swing_to_boom"/>
-    <xacro:gazebo_ros2_control_joints name="cabin_to_swing"/>
+        <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+        <xacro:gazebo_ros2_control_joints name="excavator_slew" effort_lim="10000"/>
+        <xacro:gazebo_ros2_control_joints name="plow_to_base"  effort_lim="1000"/>
+        <xacro:gazebo_ros2_control_joints name="arm_to_bucket"  effort_lim="1000"/>
+        <xacro:gazebo_ros2_control_joints name="boom_to_arm"  effort_lim="1000"/>
+        <xacro:gazebo_ros2_control_joints name="swing_to_boom"  effort_lim="10000"/>
+        <xacro:gazebo_ros2_control_joints name="cabin_to_swing"  effort_lim="1000"/>
     </ros2_control>
 
     <gazebo>

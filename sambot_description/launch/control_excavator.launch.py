@@ -23,6 +23,7 @@ from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
+from launch.actions import TimerAction
 
 import xacro
 
@@ -34,7 +35,7 @@ def generate_launch_description():
              )
 
     gazebo_ros2_control_demos_path = os.path.join(
-        get_package_share_directory('urdf_visualize'))
+        get_package_share_directory('sambot_description'))
 
     xacro_file = os.path.join(gazebo_ros2_control_demos_path,
                               'urdf',
@@ -100,10 +101,6 @@ def generate_launch_description():
         cabin_to_swing_controller
     ]
 
-    load_joint_trajectory_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'effort_controller'],
-        output='screen'
-    )
 
     return LaunchDescription([
         RegisterEventHandler(
@@ -115,7 +112,10 @@ def generate_launch_description():
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=load_joint_state_broadcaster,
-                on_exit=controllers,
+                on_exit=TimerAction(
+                        period=5.0,  # Wait 3 seconds before loading controllers
+                        actions=controllers
+                    ),
             )
         ),
         gazebo,

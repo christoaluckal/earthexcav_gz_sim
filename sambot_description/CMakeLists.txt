@@ -23,7 +23,7 @@ find_package(sensor_msgs REQUIRED)
 # ament_target_dependencies(listener rclcpp std_msgs)
 
 install(DIRECTORY
-  launch
+  launch urdf
   DESTINATION share/${PROJECT_NAME}
 )
 install(DIRECTORY

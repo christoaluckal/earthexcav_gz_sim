@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="mesh_root" value="file://$(find urdf_visualize)/meshes"/>
+
+    
+    <xacro:property name="cabin_base_mesh" value="${mesh_root}/compact_excavator_cabin_body.stl"/>
+    <xacro:property name="cabin_base_origin" value="0.1592 -0.2513 0.2814"/>
+    <xacro:property name="cabin_base_rpy" value="0 0 0"/>
+    <xacro:property name="cabin_base_mass" value="9732.8039"/>
+    <xacro:property name="cabin_inertial_origin" value="-0.1469 0.4412 0.4509"/>
+    <xacro:property name="cabin_inertial_rpy" value="0 0 0"/>
+    <xacro:property name="cabin_base_material" value="0.2314 0.3804 0.7059 1.0"/>
+    <xacro:property name="cabin_base_inertial" value="3175.1655302028038932 -269.97312494382822479 167.61780128589879268 2627.6328649732372469 -193.85494965010886403 3742.616047274826542"/>
+
+    <xacro:property name="turret_base_mesh" value="${mesh_root}/compact_excavator_frame_body.stl"/>
+    <xacro:property name="turret_base_origin" value="0 0 0"/>
+    <xacro:property name="turret_base_rpy" value="0 0 0"/>
+    <xacro:property name="turret_base_mass" value="459.1171"/>
+    <xacro:property name="turret_base_inertial_origin" value="-0.0068 -0.1255 -0.1865"/>
+    <xacro:property name="turret_base_inertial_rpy" value="0 0 0"/>
+    <xacro:property name="turret_base_material" value="0.9176 0.9176 0.9176 1.0"/>
+    <xacro:property name="turret_base_inertial" value="103.54309263053609413 2.8689912175751035583 -0.26918599165092144121 71.550382439979060223 -8.7881744003938315757 164.71779214088334697"/>
+</robot>
