@@ -2,7 +2,44 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:property name="mesh_root" value="file://$(find urdf_visualize)/meshes"/>
 
+    <!-- MAIN LINK NAMES -->
+    <xacro:property name="base_link_name" value="base_link"/>
+    <xacro:property name="cabin_link_name" value="cabin_base"/>
+    <xacro:property name="turret_link_name" value="turret_base"/>
+    <xacro:property name="plow_link_name" value="push_blade_base"/>
+    <xacro:property name="swing_link_name" value="swing_base"/>
+    <xacro:property name="boom_link_name" value="boom_base"/>
+    <xacro:property name="arm_link_name" value="arm_base"/>
+    <xacro:property name="bucket_link_name" value="bucket_base"/>
     
+    <!-- WHEEL LINKS -->
+    <xacro:property name="left_spinning_wheel_link_name" value="left_spinning_wheel_link"/>
+    <xacro:property name="right_spinning_wheel_link_name" value="right_spinning_wheel_link"/>
+    <xacro:property name="left_front_wheel_link_name" value="left_front_wheel_link"/>
+    <xacro:property name="right_front_wheel_link_name" value="right_front_wheel_link"/>
+    <xacro:property name="left_skid_wheel_spinning_link_name" value="left_skid_wheel_spinning"/>
+    <xacro:property name="left_skid_wheel_free_link_name" value="left_skid_wheel_free"/>
+    <xacro:property name="right_skid_wheel_spinning_link_name" value="right_skid_wheel_spinning"/>
+    <xacro:property name="right_skid_wheel_free_link_name" value="right_skid_wheel_free"/>
+
+    <!-- JOINT NAMES -->
+    <xacro:property name="base_to_turret_joint_name" value="base_to_turret"/>
+    <xacro:property name="left_spinning_to_turret_joint_name" value="left_spinning_to_turret"/>
+    <xacro:property name="left_front_to_turret_joint_name" value="left_front_to_turret"/>
+    <xacro:property name="right_spinning_to_turret_joint_name" value="right_spinning_to_turret"/>
+    <xacro:property name="right_front_to_turret_joint_name" value="right_front_to_turret"/>
+    <xacro:property name="plow_to_base_joint_name" value="plow_to_base"/>
+    <xacro:property name="swing_to_boom_joint_name" value="swing_to_boom"/>
+    <xacro:property name="boom_to_arm_joint_name" value="boom_to_arm"/>
+    <xacro:property name="arm_to_bucket_joint_name" value="arm_to_bucket"/>
+    <xacro:property name="cabin_to_swing_joint_name" value="cabin_to_swing"/>
+    <xacro:property name="excavator_slew_joint_name" value="excavator_slew"/>
+    <xacro:property name="left_spin_to_skid_joint_name" value="left_spin_to_skid"/>
+    <xacro:property name="left_free_to_skid_joint_name" value="left_free_to_skid"/>
+    <xacro:property name="right_spin_to_skid_joint_name" value="right_spin_to_skid"/>
+    <xacro:property name="right_free_to_skid_joint_name" value="right_free_to_skid"/>
+
+    <!-- CABIN LINK PARAMS -->
     <xacro:property name="cabin_base_mesh" value="${mesh_root}/compact_excavator_cabin_body.stl"/>
     <xacro:property name="cabin_base_origin" value="0.1592 -0.2513 0.2814"/>
     <xacro:property name="cabin_base_rpy" value="0 0 0"/>
@@ -94,7 +131,6 @@
     <xacro:property name="arm_base_mass" value="265.34907807560875881"/>
     <xacro:property name="arm_base_inertial" value="57.599134249663784146 0.078442580554215754485 0.0049826290162324230956 1.8968981412117758012 0.02459901605653430981 58.868680211308259231"/>
 
-    <xacro:property name="bucket_link_name" value="bucket_base"/>
     <xacro:property name="bucket_mesh1" value="${mesh_root}/part04.stl"/>
     <xacro:property name="bucket_mesh1_origin" value="0.060000000000000053291 0.14000000000000012434 0.054999999999999993339"/>
     <xacro:property name="bucket_mesh1_rpy" value="-3.14 -1.57 0"/>

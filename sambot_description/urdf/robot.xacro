@@ -369,10 +369,10 @@
     </link>
    
     
-    <xacro:skid_wheel wheel_name="left_skid_wheel_spinning" mu1="1" mu2="1"/>
-    <xacro:skid_wheel wheel_name="left_skid_wheel_free" mu1="1" mu2="1"/>
-    <xacro:skid_wheel wheel_name="right_skid_wheel_spinning" mu1="1" mu2="1"/>
-    <xacro:skid_wheel wheel_name="right_skid_wheel_free" mu1="1" mu2="1"/>
+    <xacro:skid_wheel wheel_name="${left_skid_wheel_spinning_link_name}" mu1="1" mu2="1"/>
+    <xacro:skid_wheel wheel_name="${left_skid_wheel_free_link_name}" mu1="1" mu2="1"/>
+    <xacro:skid_wheel wheel_name="${right_skid_wheel_spinning_link_name}" mu1="1" mu2="1"/>
+    <xacro:skid_wheel wheel_name="${right_skid_wheel_free_link_name}" mu1="1" mu2="1"/>
     
     <xacro:dynamics_plugins/>
 </robot>
