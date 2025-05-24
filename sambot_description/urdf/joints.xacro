@@ -4,7 +4,7 @@
     <xacro:include filename="$(find sambot_description)/urdf/params.xacro"/>
 
     <xacro:macro name="dynamics" params="dyn_damping dyn_friction">
-            <dynamics damping="${dyn_damping}" friction="${dyn_friction}"/>
+            <!-- <dynamics damping="${dyn_damping}" friction="${dyn_friction}"/> -->
     </xacro:macro>
 
     <joint name="${left_spin_to_skid_joint_name}" type="fixed">
@@ -12,7 +12,7 @@
         <parent link="${left_spinning_wheel_link_name}"/>
         <child link="${left_skid_wheel_spinning_link_name}"/>
         <axis xyz="0 0 1"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${left_free_to_skid_joint_name}" type="fixed">
@@ -20,7 +20,7 @@
         <parent link="${left_front_wheel_link_name}"/>
         <child link="${left_skid_wheel_free_link_name}"/>
         <axis xyz="0 0 1"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
 
@@ -29,7 +29,7 @@
         <parent link="${right_spinning_wheel_link_name}"/>
         <child link="${right_skid_wheel_spinning_link_name}"/>
         <axis xyz="0 0 1"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${right_free_to_skid_joint_name}" type="fixed">
@@ -37,7 +37,7 @@
         <parent link="${right_front_wheel_link_name}"/>
         <child link="${right_skid_wheel_free_link_name}"/>
         <axis xyz="0 0 1"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
 
@@ -53,8 +53,8 @@
         <parent link="${turret_link_name}" />
         <child link="${left_spinning_wheel_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${right_spinning_to_turret_joint_name}" type="continuous">
@@ -62,8 +62,8 @@
         <parent link="${turret_link_name}" />
         <child link="${right_spinning_wheel_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${left_front_to_turret_joint_name}" type="continuous">
@@ -71,8 +71,8 @@
         <parent link="${turret_link_name}" />
         <child link="${left_front_wheel_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${right_front_to_turret_joint_name}" type="continuous">
@@ -80,8 +80,8 @@
         <parent link="${turret_link_name}" />
         <child link="${right_front_wheel_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${plow_to_base_joint_name}" type="revolute">
@@ -89,8 +89,8 @@
         <parent link="${turret_link_name}" />
         <child link="${plow_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" lower="0.2" upper="0" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" lower="0.2" upper="0" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${excavator_slew_joint_name}" type="continuous">
@@ -98,8 +98,8 @@
         <parent link="${turret_link_name}" />
         <child link="${cabin_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
 
@@ -108,8 +108,8 @@
         <parent link="${arm_link_name}" />
         <child link="bucket_base" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" lower="-1.2217304763960306069" upper="0.87266462599716476678"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" lower="-1.2217304763960306069" upper="0.87266462599716476678"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${boom_to_arm_joint_name}" type="revolute">
@@ -117,8 +117,8 @@
         <parent link="${boom_link_name}" />
         <child link="${arm_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" lower="-0.5" upper="1.57"/>
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" lower="-0.5" upper="1.57"/>
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
 
@@ -127,16 +127,16 @@
         <parent link="${swing_link_name}" />
         <child link="${boom_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" lower="-0.1" upper="0.1" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" lower="-1" upper="1" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
     <joint name="${cabin_to_swing_joint_name}" type="revolute">
-        <origin xyz="-0.040707723917193447405 -0.80673603465099630316 0.38039999999999996039" rpy="3.141592653589793116 4.8797124238540929311e-17 0.21446312817660284633" />
+        <origin xyz="-0.040707723917193447405 -0.80673603465099630316 0.38039999999999996039" rpy="3.141592653589793116 4.8797124238540929311e-17 0" />
         <parent link="${cabin_link_name}" />
         <child link="${swing_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="10000" velocity="5" lower="-1" upper="1.57" />
-        <xacro:dynamics dyn_damping="0.1" dyn_friction="0.0"/>
+        <limit effort="20000" velocity="5" lower="-0.1" upper="0.1" />
+        <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 </robot>

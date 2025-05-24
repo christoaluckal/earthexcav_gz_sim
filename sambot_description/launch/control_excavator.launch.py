@@ -113,7 +113,7 @@ def generate_launch_description():
             event_handler=OnProcessExit(
                 target_action=load_joint_state_broadcaster,
                 on_exit=TimerAction(
-                        period=5.0,  # Wait 3 seconds before loading controllers
+                        period=3.0, 
                         actions=controllers
                     ),
             )
