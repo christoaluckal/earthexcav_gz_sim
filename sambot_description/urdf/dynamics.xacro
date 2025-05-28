@@ -6,11 +6,11 @@
             <stiffness>${stiffness}</stiffness>
             <damping>${damping}</damping>
             <pid>
-                <p>10</p>
+                <p>3000000</p>
                 <i>0</i>
-                <d>0.01</d>
+                <d>0</d>
             </pid>
-            <dynamics damping="0.1" friction="0.2"/>
+            <!-- <dynamics damping="0.1" friction="0.2"/> -->
         </gazebo>
     </xacro:macro>
 
@@ -22,7 +22,7 @@
             </command_interface>
             <state_interface name="position"/>
             <state_interface name="velocity"/>
-            <state_interface name="effort"/>
+            <!-- <state_interface name="effort"/> -->
         </joint>
     </xacro:macro>
     <xacro:macro name="gazebo_ros2_control_joints_velocity" params="name velocity_lim">
@@ -34,6 +34,17 @@
             <state_interface name="position"/>
             <state_interface name="velocity"/>
             <state_interface name="effort"/>
+        </joint>
+    </xacro:macro>
+    <xacro:macro name="gazebo_ros2_control_joints_position" params="name position_lim">
+        <joint name="${name}">
+            <command_interface name="position">
+                <param name="min">${-position_lim}</param>
+                <param name="max">${position_lim}</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <!-- <state_interface name="effort"/> -->
         </joint>
     </xacro:macro>
     <xacro:macro name="simple_transmission" params="name">
@@ -49,16 +60,16 @@
         </transmission>
     </xacro:macro>
 
-    <xacro:gazebo_joint_dynamics joint_name="${excavator_slew_joint_name}" stiffness="3000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${plow_to_base_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${arm_to_bucket_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${boom_to_arm_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${swing_to_boom_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${cabin_to_swing_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${left_spin_to_skid_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${left_free_to_skid_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${right_spin_to_skid_joint_name}" stiffness="3000" damping="0.1"/>
-    <xacro:gazebo_joint_dynamics joint_name="${right_free_to_skid_joint_name}" stiffness="3000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${excavator_slew_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${plow_to_base_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${arm_to_bucket_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${boom_to_arm_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${swing_to_boom_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${cabin_to_swing_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${left_spin_to_skid_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${left_free_to_skid_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${right_spin_to_skid_joint_name}" stiffness="1000" damping="0.1"/>
+    <xacro:gazebo_joint_dynamics joint_name="${right_free_to_skid_joint_name}" stiffness="1000" damping="0.1"/>
 
 
     <xacro:simple_transmission name="${excavator_slew_joint_name}"/>
@@ -74,17 +85,25 @@
                 <plugin>gazebo_ros2_control/GazeboSystem</plugin>
             </hardware>
             <xacro:gazebo_ros2_control_joints_effort name="${excavator_slew_joint_name}" effort_lim="100000"/>
-            <xacro:gazebo_ros2_control_joints_effort name="${plow_to_base_joint_name}"  effort_lim="100000"/>
+            <xacro:gazebo_ros2_control_joints_effort name="${cabin_to_swing_joint_name}"  effort_lim="100000"/>
+            <xacro:gazebo_ros2_control_joints_effort name="${swing_to_boom_joint_name}"  effort_lim="100000"/>
             <xacro:gazebo_ros2_control_joints_effort name="${arm_to_bucket_joint_name}"  effort_lim="100000"/>
             <xacro:gazebo_ros2_control_joints_effort name="${boom_to_arm_joint_name}"  effort_lim="100000"/>
-            <xacro:gazebo_ros2_control_joints_effort name="${swing_to_boom_joint_name}"  effort_lim="100000"/>
-            <xacro:gazebo_ros2_control_joints_effort name="${cabin_to_swing_joint_name}"  effort_lim="100000"/>
+            <xacro:gazebo_ros2_control_joints_effort name="${plow_to_base_joint_name}"  effort_lim="100000"/>
+            
             <!-- <xacro:gazebo_ros2_control_joints_velocity name="${excavator_slew_joint_name}" velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${plow_to_base_joint_name}"  velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${arm_to_bucket_joint_name}"  velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${boom_to_arm_joint_name}"  velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${swing_to_boom_joint_name}"  velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${cabin_to_swing_joint_name}"  velocity_lim="1.0"/> -->
+
+            <xacro:gazebo_ros2_control_joints_position name="${excavator_slew_joint_name}" position_lim="1"/>
+            <xacro:gazebo_ros2_control_joints_position name="${cabin_to_swing_joint_name}"  position_lim="1"/>
+            <xacro:gazebo_ros2_control_joints_position name="${swing_to_boom_joint_name}"  position_lim="1"/>
+            <xacro:gazebo_ros2_control_joints_position name="${arm_to_bucket_joint_name}"  position_lim="1"/>
+            <xacro:gazebo_ros2_control_joints_position name="${boom_to_arm_joint_name}"  position_lim="1"/>
+            <xacro:gazebo_ros2_control_joints_position name="${plow_to_base_joint_name}"  position_lim="1"/>
         </ros2_control>
 
         <gazebo>

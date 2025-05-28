@@ -1,49 +1,48 @@
 controller_manager:
   ros__parameters:
     update_rate: 1000  # Hz
-    use_sim_time: true
 
     excavator_controller:
+      # type: joint_trajectory_controller/JointTrajectoryController
       type: joint_trajectory_controller/JointTrajectoryController
       
     joint_state_broadcaster:
-      type: joint_state_broadcaster/JointStateBroadcaster
+      type: forward_command_controller/ForwardCommandController
 
 
 excavator_controller:
   ros__parameters:
     joints:
       - swing_to_boom
-      - boom_to_arm
-      - arm_to_bucket
+      # - boom_to_arm
+      # - arm_to_bucket
 
     command_interfaces:
-      - position
+      - effort
 
     state_interfaces:
       - position
       - velocity
-
-    state_publish_rate: 50.0
-    action_monitor_rate: 20.0
+    
+    state_publish_rate: 50.0  # Hz
+    action_monitor_rate: 20.0  # Hz
 
     allow_partial_joints_goal: false
     open_loop_control: true
+
     constraints:
       stopped_velocity_tolerance: 0.01
-      goal_time: 0.0
+      goal_time: 100.0
       swing_to_boom:
-        trajectory: 0.05
+        # trajectory: 0.1
         goal: 0.03
-      gains:
-        swing_to_boom:
-          p: 10000000.0
-          i: 1
-          d: 10000.0
-          i_clamp: 0.0
-          ff_velocity: 100.0
-    
-    set_last_command_interface_value_as_state_on_activation: true
+      # boom_to_arm:
+      #   # trajectory: 0.1
+      #   goal: 0.03
+      # arm_to_bucket:
+      #   # trajectory: 0.1
+      #   goal: 0.03
+
 
 
 # controller_manager:

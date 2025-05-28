@@ -29,11 +29,12 @@ import xacro
 
 
 def generate_launch_description():
+    pkg_share = get_package_share_directory('sambot_description')
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
              )
-
+    
     gazebo_ros2_control_demos_path = os.path.join(
         get_package_share_directory('sambot_description'))
 
@@ -92,13 +93,23 @@ def generate_launch_description():
         output='screen'
     )
 
+    joint_trajectory_controller = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['excavator_controller', '--controller-manager-timeout', '50'],
+        output='screen'
+    )
+
+    
+
     controllers = [
-        slew_controller,
-        plow_to_base_controller,
-        arm_to_bucket_controller,
-        boom_to_arm_controller,
-        swing_to_boom_controller,
-        cabin_to_swing_controller
+        # slew_controller,
+        # plow_to_base_controller,
+        # arm_to_bucket_controller,
+        # boom_to_arm_controller,
+        # swing_to_boom_controller,
+        # cabin_to_swing_controller
+        joint_trajectory_controller
     ]
 
 

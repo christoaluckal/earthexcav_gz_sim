@@ -127,7 +127,7 @@
         <parent link="${swing_link_name}" />
         <child link="${boom_link_name}" />
         <axis xyz="0 0 1"/>
-        <limit effort="20000" velocity="5" lower="-1" upper="1" />
+        <limit effort="20000" velocity="5" lower="-0.4" upper="1" />
         <!-- <xacro:dynamics dyn_damping="0.1" dyn_friction="0.2"/> -->
     </joint>
 
