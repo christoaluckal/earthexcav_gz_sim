@@ -86,7 +86,7 @@
             <hardware>
                 <plugin>gazebo_ros2_control/GazeboSystem</plugin>
             </hardware>
-            <xacro:gazebo_ros2_control_joints_effort name="${excavator_slew_joint_name}" effort_lim="20000"/>
+            <!-- <xacro:gazebo_ros2_control_joints_effort name="${excavator_slew_joint_name}" effort_lim="20000"/>
             <xacro:gazebo_ros2_control_joints_effort name="${cabin_to_swing_joint_name}"  effort_lim="20000"/>
             <xacro:gazebo_ros2_control_joints_effort name="${swing_to_boom_joint_name}"  effort_lim="20000"/>
             <xacro:gazebo_ros2_control_joints_effort name="${arm_to_bucket_joint_name}"  effort_lim="20000"/>
@@ -98,7 +98,7 @@
             <xacro:gazebo_ros2_control_joints_velocity name="${arm_to_bucket_joint_name}"  velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${boom_to_arm_joint_name}"  velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${swing_to_boom_joint_name}"  velocity_lim="1.0"/>
-            <xacro:gazebo_ros2_control_joints_velocity name="${cabin_to_swing_joint_name}"  velocity_lim="1.0"/>
+            <xacro:gazebo_ros2_control_joints_velocity name="${cabin_to_swing_joint_name}"  velocity_lim="1.0"/> -->
 
             <xacro:gazebo_ros2_control_joints_position name="${excavator_slew_joint_name}" position_lim="${pi}"/>
             <xacro:gazebo_ros2_control_joints_position name="${cabin_to_swing_joint_name}"  position_lim="${pi}"/>
@@ -110,7 +110,7 @@
 
         <gazebo>
             <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
-                <parameters>$(find sambot_description)/params/ros2_controllers.yaml</parameters>
+                <parameters>$(find sambot_description)/params/position_controller.yaml</parameters>
             </plugin>
         </gazebo>
         <gazebo>

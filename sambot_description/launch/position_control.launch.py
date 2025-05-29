@@ -39,7 +39,7 @@ def generate_launch_description():
         get_package_share_directory('sambot_description'))
 
     xacro_file = os.path.join(gazebo_ros2_control_demos_path,
-                              'urdf',
+                              'urdf', 'position',
                               'robot.xacro')
 
     doc = xacro.parse(open(xacro_file))
@@ -64,35 +64,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    slew_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'excavator_slew_controller'],
-        output='screen'
-    )
-
-    plow_to_base_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'plow_to_base_controller'],
-        output='screen'
-    )
-    arm_to_bucket_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'arm_to_bucket_controller'],
-        output='screen'
-    )
-
-    boom_to_arm_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'boom_to_arm_controller'],
-        output='screen'
-    )
-
-    swing_to_boom_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'swing_to_boom_controller'],
-        output='screen'
-    )
-
-    cabin_to_swing_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'cabin_to_swing_controller'],
-        output='screen'
-    )
-
     joint_trajectory_controller = Node(
         package='controller_manager',
         executable='spawner',
@@ -100,15 +71,7 @@ def generate_launch_description():
         output='screen'
     )
 
-    
-
     controllers = [
-        # slew_controller,
-        # plow_to_base_controller,
-        # arm_to_bucket_controller,
-        # boom_to_arm_controller,
-        # swing_to_boom_controller,
-        # cabin_to_swing_controller
         joint_trajectory_controller
     ]
 
