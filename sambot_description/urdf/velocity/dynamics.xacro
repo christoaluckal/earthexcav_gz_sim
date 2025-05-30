@@ -1,19 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:include filename="$(find sambot_description)/urdf/params.xacro"/>
-    <xacro:macro name="gazebo_joint_dynamics" params="joint_name stiffness damping">
-        <gazebo reference="${joint_name}">
-            <stiffness>${stiffness}</stiffness>
-            <damping>${damping}</damping>
-            <!-- <pid>
-                <p>1</p>
-                <i>0</i>
-                <d>0</d>
-            </pid> -->
-            <dynamics damping="5000" friction="0.2"/>
-        </gazebo>
-    </xacro:macro>
-
+    
+    <!-- EFFORT BASED JOINTS -->
     <xacro:macro name="gazebo_ros2_control_joints_effort" params="name effort_lim">
         <joint name="${name}">
             <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -26,6 +15,8 @@
             <!-- <state_interface name="effort"/> -->
         </joint>
     </xacro:macro>
+
+    <!-- VELOCITY BASED JOINTS -->
     <xacro:macro name="gazebo_ros2_control_joints_velocity" params="name velocity_lim">
         <joint name="${name}">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
@@ -38,6 +29,8 @@
             <!-- <state_interface name="effort"/> -->
         </joint>
     </xacro:macro>
+
+    <!-- POSITION BASED JOINTS -->
     <xacro:macro name="gazebo_ros2_control_joints_position" params="name position_lim">
         <joint name="${name}">
             <command_interface name="position">
@@ -49,6 +42,8 @@
             <!-- <state_interface name="effort"/> -->
         </joint>
     </xacro:macro>
+
+    <!-- TRANSMISSIONS FOR CONTROL (REQUIRED FOR ALL INTERFACES VIA ros2_control) -->
     <xacro:macro name="simple_transmission" params="name">
         <transmission name="${name}_trans">
             <type>transmission_interface/SimpleTransmission</type>
@@ -62,18 +57,7 @@
         </transmission>
     </xacro:macro>
 
-    <xacro:gazebo_joint_dynamics joint_name="${excavator_slew_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${plow_to_base_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${arm_to_bucket_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${boom_to_arm_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${swing_to_boom_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${cabin_to_swing_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${left_spin_to_skid_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${left_free_to_skid_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${right_spin_to_skid_joint_name}" stiffness="30000" damping="5"/>
-    <xacro:gazebo_joint_dynamics joint_name="${right_free_to_skid_joint_name}" stiffness="30000" damping="5"/>
-
-
+    <!-- INSTANTIATE TRANSMISSIONS -->
     <xacro:simple_transmission name="${excavator_slew_joint_name}"/>
     <xacro:simple_transmission name="${plow_to_base_joint_name}"/>
     <xacro:simple_transmission name="${arm_to_bucket_joint_name}"/>
@@ -81,6 +65,7 @@
     <xacro:simple_transmission name="${swing_to_boom_joint_name}"/>
     <xacro:simple_transmission name="${cabin_to_swing_joint_name}"/>
 
+    <!-- MAIN DYNAMICS -->
     <xacro:macro name="dynamics_plugins">
         <ros2_control name="GazeboSystem" type="system">
             <hardware>
