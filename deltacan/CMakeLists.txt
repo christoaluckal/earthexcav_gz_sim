@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(sambot_description)
+project(deltacan)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -10,35 +10,13 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(nav_msgs REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(sensor_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 
-# add_executable(talker src/publisher_member_function.cpp)
-# ament_target_dependencies(talker rclcpp std_msgs)
-
-# add_executable(listener src/subscriber_member_function.cpp)
-# ament_target_dependencies(listener rclcpp std_msgs)
-
-install(DIRECTORY
-  launch urdf meshes
-  DESTINATION share/${PROJECT_NAME}
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/DeltaCan.msg"
+  DEPENDENCIES std_msgs
 )
-install(DIRECTORY
-  params
-  DESTINATION share/${PROJECT_NAME}
-)
-
-# add_executable(sambot_exe src/sambot_file.cpp)
-# ament_target_dependencies(sambot_exe 
-# rclcpp 
-# std_msgs
-# nav_msgs
-# geometry_msgs
-# sensor_msgs
-# )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -52,4 +30,5 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()

@@ -1,0 +1,16 @@
+std_msgs/Header header  
+float32 mslewcmd
+float32 mboomcmd
+float32 mbucketcmd
+float32 marmcmd
+float32 mlefttravelcmd
+float32 mrighttravelcmd
+float32 mbladecmd_a
+float32 mswingcmd_a
+float32 mthumbcmd_a
+float32 mbladecmd_b
+float32 mswingcmd_b
+float32 mthumbcmd_b
+float32 mhydraulic
+float32 mhorn
+float32 menableautonav

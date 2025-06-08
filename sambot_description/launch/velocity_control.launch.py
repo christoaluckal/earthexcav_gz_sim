@@ -1,4 +1,4 @@
-# Copyright 2020 Open Source Robotics Foundation, Inc.
+# Copyright 2021 Open Source Robotics Foundation, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,106 +12,144 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-
-from ament_index_python.packages import get_package_share_directory
-
-
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import RegisterEventHandler
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 
 from launch_ros.actions import Node
-from launch.actions import TimerAction
-
-import xacro
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    pkg_share = get_package_share_directory('sambot_description')
-    gazebo = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-             )
-    
-    gazebo_ros2_control_demos_path = os.path.join(
-        get_package_share_directory('sambot_description'))
+    # Launch Arguments
+    use_sim_time = LaunchConfiguration('use_sim_time', default=True)
+    gz_args = LaunchConfiguration('gz_args', default='')
 
-    xacro_file = os.path.join(gazebo_ros2_control_demos_path,
-                              'urdf', 'velocity',
-                              'robot.xacro')
-
-    doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc)
-    params = {'robot_description': doc.toxml()}
+    # Get URDF via xacro
+    robot_description_content = Command(
+        [
+            PathJoinSubstitution([FindExecutable(name='xacro')]),
+            ' ',
+            PathJoinSubstitution(
+                [FindPackageShare('sambot_description'),
+                 'urdf', 'robot.xacro']
+            ),
+        ]
+    )
+    robot_description = {'robot_description': robot_description_content}
+    robot_controllers = PathJoinSubstitution(
+        [
+            FindPackageShare('sambot_description'),
+            'params',
+            'vc.yaml',
+        ]
+    )
 
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
-        parameters=[params]
+        parameters=[robot_description]
     )
 
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'excavator'],
-                        output='screen')
-
-    load_joint_state_broadcaster = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
-             'joint_state_broadcaster'],
-        output='screen'
+    gz_spawn_entity = Node(
+        package='ros_gz_sim',
+        executable='create',
+        output='screen',
+        arguments=['-topic', 'robot_description',
+                   '-name', 'cart', '-allow_renaming', 'true'],
     )
 
-    joint_trajectory_controller = Node(
+    joint_state_broadcaster_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['excavator_controller', '--controller-manager-timeout', '50'],
-        output='screen'
+        arguments=['joint_state_broadcaster'],
     )
 
-    arm_to_bucket_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'arm_to_bucket_controller'],
-        output='screen'
+    deltacan_to_gz = Node(
+        package='deltacan_to_gz',
+        executable='control_exe',
+        output='screen',
     )
 
-    swing_to_boom_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'swing_to_boom_controller'],
-        output='screen'
+    # swing_to_boom_controller = Node(
+    #     package = 'controller_manager',
+    #     executable = 'spawner',
+    #     arguments = [
+    #         'swing_to_boom_controller',
+    #         '--param-file',
+    #         robot_controllers
+    #     ],
+    # )
+    # boom_to_arm_controller = Node(
+    #     package = 'controller_manager',
+    #     executable = 'spawner',
+    #     arguments = [
+    #         'boom_to_arm_controller',
+    #         '--param-file',
+    #         robot_controllers
+    #     ],
+    # )
+
+    # arm_to_bucket_controller = Node(
+    #     package = 'controller_manager',
+    #     executable = 'spawner',
+    #     arguments = [
+    #         'arm_to_bucket_controller',
+    #         '--param-file',
+    #         robot_controllers
+    #     ],
+    # )
+
+    manipulator_controller = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[
+            'manipulator_controller',
+            '--param-file',
+            robot_controllers
+        ],
     )
 
-    boom_to_arm_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'boom_to_arm_controller'],
+    # Bridge
+    bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
         output='screen'
     )
-
-
-    controllers = [
-        # joint_trajectory_controller,
-        arm_to_bucket_controller,
-        swing_to_boom_controller,
-        boom_to_arm_controller
-    ]
-
 
     return LaunchDescription([
+        # Launch gazebo environment
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                [PathJoinSubstitution([FindPackageShare('ros_gz_sim'),
+                                       'launch',
+                                       'gz_sim.launch.py'])]),
+            launch_arguments=[('gz_args', [gz_args, ' -r -v 1 empty.sdf'])]),
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=spawn_entity,
-                on_exit=[load_joint_state_broadcaster],
+                target_action=gz_spawn_entity,
+                on_exit=[joint_state_broadcaster_spawner],
             )
         ),
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=load_joint_state_broadcaster,
-                on_exit=TimerAction(
-                        period=3.0, 
-                        actions=controllers
-                    ),
+                target_action=joint_state_broadcaster_spawner,
+                # on_exit=[swing_to_boom_controller, boom_to_arm_controller, arm_to_bucket_controller],
+                on_exit=[manipulator_controller],
             )
         ),
-        gazebo,
+        bridge,
         node_robot_state_publisher,
-        spawn_entity,
+        gz_spawn_entity,
+        # Launch Arguments
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value=use_sim_time,
+            description='If true, use simulated clock'),
+        deltacan_to_gz,
     ])

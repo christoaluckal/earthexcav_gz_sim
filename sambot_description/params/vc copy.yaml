@@ -1,0 +1,51 @@
+gz_ros_control:
+  ros__parameters:
+    hold_joints: true
+    position_proportional_gain: 0.5
+
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+
+    swing_to_boom_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    boom_to_arm_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    arm_to_bucket_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+
+swing_to_boom_controller:
+  ros__parameters:
+    joints:
+      - swing_to_boom
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+
+boom_to_arm_controller:
+  ros__parameters:
+    joints:
+      - boom_to_arm
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+
+arm_to_bucket_controller:
+  ros__parameters:
+    joints:
+      - arm_to_bucket
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
