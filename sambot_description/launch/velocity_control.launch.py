@@ -75,6 +75,20 @@ def generate_launch_description():
         output='screen',
     )
 
+    joy = Node(
+        package='joy',
+        executable='joy_node',
+        name='joy_node',
+        output='screen',
+    )
+
+    joy_to_deltacan = Node(
+        package='deltacan_to_gz',
+        executable='joy_to_deltacan_exe',
+        name='joy_to_deltacan',
+        output='screen',
+    )
+
     # swing_to_boom_controller = Node(
     #     package = 'controller_manager',
     #     executable = 'spawner',
@@ -152,4 +166,6 @@ def generate_launch_description():
             default_value=use_sim_time,
             description='If true, use simulated clock'),
         deltacan_to_gz,
+        joy,
+        joy_to_deltacan,
     ])

@@ -23,7 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'control_exe = deltacan_to_gz.controller:main'
+            'control_exe = deltacan_to_gz.controller:main',
+            'joy_to_deltacan_exe = deltacan_to_gz.joy_to_deltacan:main',
         ],
     },
 )

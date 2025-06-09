@@ -1,0 +1,679 @@
+<sdf version='1.7'>
+  <model name='excavator'>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.0068 -0.1255 0.3635 0 -0 0</pose>
+        <mass>459.117</mass>
+        <inertia>
+          <ixx>103.543</ixx>
+          <ixy>2.86899</ixy>
+          <ixz>-0.269186</ixz>
+          <iyy>71.5504</iyy>
+          <iyz>-8.78817</iyz>
+          <izz>164.718</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_fixed_joint_lump__turret_base_collision'>
+        <pose>0 0 0.55 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_frame_body.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_fixed_joint_lump__turret_base_visual'>
+        <pose>0 0 0.55 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_frame_body.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='excavator_slew' type='revolute'>
+      <pose relative_to='base_link'>0 0 0.65 -0 -0 -3.1415</pose>
+      <parent>base_link</parent>
+      <child>cabin_base</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='cabin_base'>
+      <pose relative_to='excavator_slew'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.1469 0.4412 0.4509 0 -0 0</pose>
+        <mass>9732.8</mass>
+        <inertia>
+          <ixx>3175.17</ixx>
+          <ixy>-269.973</ixy>
+          <ixz>167.618</ixz>
+          <iyy>2627.63</iyy>
+          <iyz>-193.855</iyz>
+          <izz>3742.62</izz>
+        </inertia>
+      </inertial>
+      <collision name='cabin_base_collision'>
+        <pose>0.1592 -0.2513 0.2814 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_cabin_body.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='cabin_base_visual'>
+        <pose>0.1592 -0.2513 0.2814 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_cabin_body.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='cabin_to_swing' type='revolute'>
+      <pose relative_to='cabin_base'>-0.040708 -0.806736 0.3804 3.14159 0 0</pose>
+      <parent>cabin_base</parent>
+      <child>swing_base</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.1</lower>
+          <upper>0.1</upper>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='swing_base'>
+      <pose relative_to='cabin_to_swing'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.02603 0.106723 0.097554 0 -0 0</pose>
+        <mass>98.1402</mass>
+        <inertia>
+          <ixx>2.60858</ixx>
+          <ixy>0.0402273</ixy>
+          <ixz>0.421368</ixz>
+          <iyy>3.16652</iyy>
+          <iyz>-0.159164</iyz>
+          <izz>1.789</izz>
+        </inertia>
+      </inertial>
+      <collision name='swing_base_collision'>
+        <pose>0 0.075 -0.15 -3.14 -0 -0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part01_pin_1.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='swing_base_visual'>
+        <pose>0 0.075 -0.15 -3.14 -0 -0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part01_pin_1.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='swing_to_boom' type='revolute'>
+      <pose relative_to='swing_base'>0.08 0.075 -0.15 -1.5708 0.392858 -1.5708</pose>
+      <parent>swing_base</parent>
+      <child>boom_base</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.4</lower>
+          <upper>1</upper>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='boom_base'>
+      <pose relative_to='swing_to_boom'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.040079 1.21533 -0.079873 0 -0 0</pose>
+        <mass>694.178</mass>
+        <inertia>
+          <ixx>242.812</ixx>
+          <ixy>71.3709</ixy>
+          <ixz>0.00659056</ixz>
+          <iyy>49.6413</iyy>
+          <iyz>-0.0342601</iyz>
+          <izz>289.837</izz>
+        </inertia>
+      </inertial>
+      <collision name='boom_base_collision'>
+        <pose>0 -0 -0.08 -1.57 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part02.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='boom_base_visual'>
+        <pose>0 -0 -0.08 -1.57 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part02.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='boom_to_arm' type='revolute'>
+      <pose relative_to='boom_base'>-0.84 2.355 -0.135 3.14159 0 2.55556</pose>
+      <parent>boom_base</parent>
+      <child>arm_base</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.5</lower>
+          <upper>1.57</upper>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='arm_base'>
+      <pose relative_to='boom_to_arm'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.108662 -0.601648 -0.055167 0 -0 0</pose>
+        <mass>265.349</mass>
+        <inertia>
+          <ixx>57.5991</ixx>
+          <ixy>0.0784426</ixy>
+          <ixz>0.00498263</ixz>
+          <iyy>1.8969</iyy>
+          <iyz>0.024599</iyz>
+          <izz>58.8687</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_base_collision'>
+        <pose>0 -0 -0.055 1.57 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part03.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='arm_base_visual'>
+        <pose>0 -0 -0.055 1.57 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part03.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='arm_to_bucket' type='revolute'>
+      <pose relative_to='arm_base'>0.12 -1.54033 0 3.14159 0 -1.59635</pose>
+      <parent>arm_base</parent>
+      <child>bucket_base</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.22173</lower>
+          <upper>0.872665</upper>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='bucket_base'>
+      <pose relative_to='arm_to_bucket'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.213638 0.426181 0.055071 0 -0 0</pose>
+        <mass>132.708</mass>
+        <inertia>
+          <ixx>14.0357</ixx>
+          <ixy>-1.66524</ixy>
+          <ixz>0.00202705</ixz>
+          <iyy>6.85497</iyy>
+          <iyz>0.00404371</iyz>
+          <izz>11.6109</izz>
+        </inertia>
+      </inertial>
+      <collision name='bucket_base_collision'>
+        <pose>0.06 0.14 0.055 -3.14 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part04.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='bucket_base_collision_1'>
+        <pose>0.078718 0.979611 0.055 -1.57 0 3</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='bucket_base_collision_2'>
+        <pose>0.17 0.308 0.055 1.57398 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket_mount.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='bucket_base_visual'>
+        <pose>0.06 0.14 0.055 -3.14 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part04.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='bucket_base_visual_1'>
+        <pose>0.078718 0.979611 0.055 -1.57 0 3</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='bucket_base_visual_2'>
+        <pose>0.17 0.308 0.055 1.57398 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket_mount.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_front_to_turret' type='revolute'>
+      <pose relative_to='base_link'>-0.613 0.8 0.275 1.5708 -1.02229 -1.5708</pose>
+      <parent>base_link</parent>
+      <child>left_front_wheel_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_front_wheel_link'>
+      <pose relative_to='left_front_to_turret'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 0.298647 0 -0 0</pose>
+        <mass>4337.21</mass>
+        <inertia>
+          <ixx>83.9878</ixx>
+          <ixy>1.06292e-17</ixy>
+          <ixz>5.46891e-16</ixz>
+          <iyy>83.9878</iyy>
+          <iyz>-6.58135e-16</iyz>
+          <izz>135.286</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_front_wheel_link_collision'>
+        <pose>0 -0 -0.0325 0 1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='left_front_wheel_link_fixed_joint_lump__left_skid_wheel_free_collision_1'>
+        <pose>0 0 0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='left_front_wheel_link_visual'>
+        <pose>0 -0 -0.0325 0 1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='left_front_wheel_link_fixed_joint_lump__left_skid_wheel_free_visual_1'>
+        <pose>0 0 0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_spinning_to_turret' type='revolute'>
+      <pose relative_to='base_link'>-0.574 -0.8 0.275 1.5708 -0.354748 1.5708</pose>
+      <parent>base_link</parent>
+      <child>left_spinning_wheel_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='left_spinning_wheel_link'>
+      <pose relative_to='left_spinning_to_turret'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 -0.29791 0 -0 0</pose>
+        <mass>4355.55</mass>
+        <inertia>
+          <ixx>84.3763</ixx>
+          <ixy>2.13927e-17</ixy>
+          <ixz>-0.000172457</ixz>
+          <iyy>84.3762</iyy>
+          <iyz>2.48343e-15</iyz>
+          <izz>135.28</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_spinning_wheel_link_collision'>
+        <pose>0 -0 -0.015 1.57319 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='left_spinning_wheel_link_fixed_joint_lump__left_skid_wheel_spinning_collision_1'>
+        <pose>0 0 -0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='left_spinning_wheel_link_visual'>
+        <pose>0 -0 -0.015 1.57319 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='left_spinning_wheel_link_fixed_joint_lump__left_skid_wheel_spinning_visual_1'>
+        <pose>0 0 -0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='plow_to_base' type='revolute'>
+      <pose relative_to='base_link'>-0.255 0.488 0.345 1.5708 -1.31956 -1.5708</pose>
+      <parent>base_link</parent>
+      <child>push_blade_base</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.2</upper>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='push_blade_base'>
+      <pose relative_to='plow_to_base'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.109705 0.880751 -0.255 0 -0 0</pose>
+        <mass>147.018</mass>
+        <inertia>
+          <ixx>31.8811</ixx>
+          <ixy>0.912474</ixy>
+          <ixz>-1.62121e-05</ixz>
+          <iyy>21.1962</iyy>
+          <iyz>4.99001e-06</iyz>
+          <izz>13.1692</izz>
+        </inertia>
+      </inertial>
+      <collision name='push_blade_base_collision'>
+        <pose>-0.021564 1.07999 -0.255 -3.14 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/push_blade_bucket.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='push_blade_base_visual'>
+        <pose>-0.021564 1.07999 -0.255 -3.14 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/push_blade_bucket.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_front_to_turret' type='revolute'>
+      <pose relative_to='base_link'>0.548 0.8 0.275 1.5708 -0 -1.5708</pose>
+      <parent>base_link</parent>
+      <child>right_front_wheel_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>100000</effort>
+          <velocity>1</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_front_wheel_link'>
+      <pose relative_to='right_front_to_turret'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0 0 -0.298912 0 -0 0</pose>
+        <mass>4337.21</mass>
+        <inertia>
+          <ixx>83.3024</ixx>
+          <ixy>-1.06292e-17</ixy>
+          <ixz>1.5741e-16</ixz>
+          <iyy>83.3024</iyy>
+          <iyz>6.97476e-33</iyz>
+          <izz>135.286</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_front_wheel_link_collision'>
+        <pose>-0 0 -0.0325 -3.14 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='right_front_wheel_link_fixed_joint_lump__right_skid_wheel_free_collision_1'>
+        <pose>0 0 -0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='right_front_wheel_link_visual'>
+        <pose>-0 0 -0.0325 -3.14 -1.5708 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='right_front_wheel_link_fixed_joint_lump__right_skid_wheel_free_visual_1'>
+        <pose>0 0 -0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_spinning_to_turret' type='revolute'>
+      <pose relative_to='base_link'>0.574 -0.8 0.275 1.5708 -1.29848 -1.5708</pose>
+      <parent>base_link</parent>
+      <child>right_spinning_wheel_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>10000</effort>
+          <velocity>1</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>10000</damping>
+          <friction>0.2</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='right_spinning_wheel_link'>
+      <pose relative_to='right_spinning_to_turret'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 -0 -0.29791 0 -0 0</pose>
+        <mass>4355.55</mass>
+        <inertia>
+          <ixx>84.3763</ixx>
+          <ixy>6.34579e-18</ixy>
+          <ixz>-0.000172457</ixz>
+          <iyy>84.3762</iyy>
+          <iyz>2.29551e-15</iyz>
+          <izz>135.28</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_spinning_wheel_link_collision'>
+        <pose>-0 0 -0.015 1.57 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='right_spinning_wheel_link_fixed_joint_lump__right_skid_wheel_spinning_collision_1'>
+        <pose>0 0 -0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='right_spinning_wheel_link_visual'>
+        <pose>-0 0 -0.015 1.57 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='right_spinning_wheel_link_fixed_joint_lump__right_skid_wheel_spinning_visual_1'>
+        <pose>0 0 -0.3 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.25</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+    <static>0</static>
+    <plugin name='gz_ros2_control::GazeboSimROS2ControlPlugin' filename='gz_ros2_control-system'>
+      <parameters>/home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/params/vc.yaml</parameters>
+      <controller_manager_name>controller_manager</controller_manager_name>
+    </plugin>
+  </model>
+</sdf>

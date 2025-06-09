@@ -1,0 +1,97 @@
+{
+  "configById": {
+    "Plot!169qm0z": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/deltacan.mboomcmd",
+          "enabled": true,
+          "color": "#4e98e2",
+          "label": "DeltaCAN boom"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/joint_states.velocity[2]",
+          "enabled": true,
+          "color": "#f5774d",
+          "label": "Boom Velocity"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240
+    },
+    "Plot!1okxakq": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/deltacan.marmcmd",
+          "enabled": true,
+          "color": "#4e98e2",
+          "label": "DeltaCAN arm"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/joint_states.velocity[4]",
+          "enabled": true,
+          "color": "#f5774d",
+          "label": "Arm Velocity"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240
+    },
+    "Plot!284tt4l": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/deltacan.marmcmd",
+          "enabled": true,
+          "color": "#4e98e2",
+          "label": "DeltaCAN bucket"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/joint_states.velocity[5]",
+          "enabled": true,
+          "color": "#f5774d",
+          "label": "Bucket Velocity"
+        }
+      ],
+      "showXAxisLabels": true,
+      "showYAxisLabels": true,
+      "showLegend": true,
+      "legendDisplay": "floating",
+      "showPlotValuesInLegend": false,
+      "isSynced": true,
+      "xAxisVal": "timestamp",
+      "sidebarDimension": 240
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "first": "Plot!169qm0z",
+    "second": {
+      "first": "Plot!1okxakq",
+      "second": "Plot!284tt4l",
+      "direction": "column"
+    },
+    "direction": "column",
+    "splitPercentage": 31.975071907957815
+  }
+}

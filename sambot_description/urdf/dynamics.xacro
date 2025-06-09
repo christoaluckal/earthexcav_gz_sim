@@ -51,12 +51,12 @@
     <xacro:gazebo_joint_dynamics joint_name="${right_free_to_skid_joint_name}" stiffness="100" damping="5"/> -->
 
 
-    <xacro:simple_transmission name="${excavator_slew_joint_name}"/>
     <xacro:simple_transmission name="${plow_to_base_joint_name}"/>
-    <xacro:simple_transmission name="${arm_to_bucket_joint_name}"/>
-    <xacro:simple_transmission name="${boom_to_arm_joint_name}"/>
-    <xacro:simple_transmission name="${swing_to_boom_joint_name}"/>
+    <xacro:simple_transmission name="${excavator_slew_joint_name}"/>
     <xacro:simple_transmission name="${cabin_to_swing_joint_name}"/>
+    <xacro:simple_transmission name="${swing_to_boom_joint_name}"/>
+    <xacro:simple_transmission name="${boom_to_arm_joint_name}"/>
+    <xacro:simple_transmission name="${arm_to_bucket_joint_name}"/>
 
     <xacro:macro name="dynamics_plugins">
         <ros2_control name="GazeboSystem" type="system">
@@ -67,12 +67,12 @@
                 <plugin>gz_ros2_control/GazeboSimSystem</plugin>
             </hardware>
 
-            <xacro:gazebo_ros2_control_joints_velocity name="${excavator_slew_joint_name}" velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${plow_to_base_joint_name}"  velocity_lim="1.0"/>
-            <xacro:gazebo_ros2_control_joints_velocity name="${arm_to_bucket_joint_name}"  velocity_lim="1.0"/>
-            <xacro:gazebo_ros2_control_joints_velocity name="${boom_to_arm_joint_name}"  velocity_lim="1.0"/>
-            <xacro:gazebo_ros2_control_joints_velocity name="${swing_to_boom_joint_name}"  velocity_lim="1.0"/>
+            <xacro:gazebo_ros2_control_joints_velocity name="${excavator_slew_joint_name}" velocity_lim="1.0"/>
             <xacro:gazebo_ros2_control_joints_velocity name="${cabin_to_swing_joint_name}"  velocity_lim="1.0"/>
+            <xacro:gazebo_ros2_control_joints_velocity name="${swing_to_boom_joint_name}"  velocity_lim="1.0"/>
+            <xacro:gazebo_ros2_control_joints_velocity name="${boom_to_arm_joint_name}"  velocity_lim="1.0"/>
+            <xacro:gazebo_ros2_control_joints_velocity name="${arm_to_bucket_joint_name}"  velocity_lim="1.0"/>
 
         </ros2_control>
 
