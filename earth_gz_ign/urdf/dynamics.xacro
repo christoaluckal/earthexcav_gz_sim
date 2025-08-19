@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:include filename="$(find sambot_description)/urdf/params.xacro"/>
+    <xacro:include filename="$(find earth_gz_ign)/urdf/params.xacro"/>
     <xacro:macro name="gazebo_joint_dynamics" params="joint_name stiffness damping">
         <gazebo reference="${joint_name}">
             <stiffness>${stiffness}</stiffness>
@@ -79,7 +79,7 @@
         <gazebo>
             <!-- <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"> -->
             <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-                <parameters>$(find sambot_description)/params/vc.yaml</parameters>
+                <parameters>$(find earth_gz_ign)/params/vc.yaml</parameters>
                 <controller_manager_name>controller_manager</controller_manager_name>
             </plugin>
         </gazebo>

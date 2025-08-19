@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find sambot_description)/urdf/params.xacro"/>
+    <xacro:include filename="$(find earth_gz_ign)/urdf/params.xacro"/>
 
     <xacro:macro name="dynamics" params="dyn_damping dyn_friction">
             <dynamics damping="${dyn_damping}" friction="${dyn_friction}"/>

@@ -34,17 +34,17 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name='xacro')]),
             ' ',
             PathJoinSubstitution(
-                [FindPackageShare('sambot_description'),
-                 'urdf', 'robot_effort_traj.xacro']
+                [FindPackageShare('earth_gz_ign'),
+                 'urdf', 'robot_effort.xacro']
             ),
         ]
     )
     robot_description = {'robot_description': robot_description_content}
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare('sambot_description'),
+            FindPackageShare('earth_gz_ign'),
             'params',
-            'etc.yaml',
+            'ec.yaml',
         ]
     )
 

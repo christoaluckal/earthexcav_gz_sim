@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="excavator">
 
-    <xacro:include filename="$(find sambot_description)/urdf/params.xacro" />
-    <xacro:include filename="$(find sambot_description)/urdf/joints.xacro" />
-    <xacro:include filename="$(find sambot_description)/urdf/dynamics.xacro" />
+    <xacro:include filename="$(find earth_gz_ign)/urdf/params.xacro" />
+    <xacro:include filename="$(find earth_gz_ign)/urdf/joints.xacro" />
+    <xacro:include filename="$(find earth_gz_ign)/urdf/dynamics_effort.xacro" />
     
     <link name="base_link"/>
 

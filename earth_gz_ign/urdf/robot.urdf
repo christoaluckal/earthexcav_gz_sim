@@ -193,7 +193,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0.1592 -0.2513 0.2814"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_cabin_body.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_cabin_body.stl"/>
       </geometry>
       <material name="compact_excavator_cabin_body_material">
         <color rgba="0.2314 0.3804 0.7059 1.0"/>
@@ -202,7 +202,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0.1592 -0.2513 0.2814"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_cabin_body.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_cabin_body.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -215,7 +215,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_frame_body.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_frame_body.stl"/>
       </geometry>
       <material name="compact_excavator_frame_body_material">
         <color rgba="0.9176 0.9176 0.9176 1.0"/>
@@ -224,7 +224,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_frame_body.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_frame_body.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -237,7 +237,7 @@
     <visual>
       <origin rpy="-4.71 0 0" xyz="0 -2.0816681711721685133e-17 -0.015000000000000124345"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl"/>
       </geometry>
       <material name="compact_excavator_main_drive_wheel_material">
         <color rgba="0.91764705882352937127 0.91764705882352937127 0.91764705882352937127 1.0"/>
@@ -246,7 +246,7 @@
     <collision>
       <origin rpy="-4.71 0 0" xyz="0 -2.0816681711721685133e-17 -0.015000000000000124345"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -259,7 +259,7 @@
     <visual>
       <origin rpy="1.57 0 0" xyz="-6.9388939039072283776e-18 0 -0.015000000000000013323"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl"/>
       </geometry>
       <material name="compact_excavator_main_drive_wheel_material">
         <color rgba="0.91764705882352937127 0.91764705882352937127 0.91764705882352937127 1.0"/>
@@ -268,7 +268,7 @@
     <collision>
       <origin rpy="1.57 0 0" xyz="-6.9388939039072283776e-18 0 -0.015000000000000013323"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -281,7 +281,7 @@
     <visual>
       <origin rpy="0 1.570796326794896336 0" xyz="1.1102230246251565404e-16 -1.1102230246251565404e-16 -0.032500000000000084377"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl"/>
       </geometry>
       <material name="compact_excavator_front_wheel_material">
         <color rgba="0.91764705882352937127 0.91764705882352937127 0.91764705882352937127 1.0"/>
@@ -290,7 +290,7 @@
     <collision>
       <origin rpy="0 1.570796326794896336 0" xyz="1.1102230246251565404e-16 -1.1102230246251565404e-16 -0.032500000000000084377"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -303,7 +303,7 @@
     <visual>
       <origin rpy="-3.14 -1.570796326794896336 0" xyz="-2.7755575615628913511e-17 0 -0.032500000000000084377"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl"/>
       </geometry>
       <material name="compact_excavator_front_wheel_material">
         <color rgba="0.91764705882352937127 0.91764705882352937127 0.91764705882352937127 1.0"/>
@@ -312,7 +312,7 @@
     <collision>
       <origin rpy="-3.14 -1.570796326794896336 0" xyz="-2.7755575615628913511e-17 0 -0.032500000000000084377"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -325,7 +325,7 @@
     <visual>
       <origin rpy="-3.14 -1.57 0" xyz="-0.021564399534920564161 1.0799900599760599018 -0.25500000000000000444"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/push_blade_bucket.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/push_blade_bucket.stl"/>
       </geometry>
       <material name="push_blade_base_material">
         <color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
@@ -334,7 +334,7 @@
     <collision>
       <origin rpy="-3.14 -1.57 0" xyz="-0.021564399534920564161 1.0799900599760599018 -0.25500000000000000444"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/push_blade_bucket.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/push_blade_bucket.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -347,7 +347,7 @@
     <visual>
       <origin rpy="-3.14 -6.1629758220391547298e-33 -3.9110122218931175387e-17" xyz="2.7755575615628913511e-17 0.074999999999999955591 -0.14999999999999996669"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part01_pin_1.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part01_pin_1.stl"/>
       </geometry>
       <material name="part01_pin_1_material">
         <color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
@@ -356,7 +356,7 @@
     <collision>
       <origin rpy="-3.14 -6.1629758220391547298e-33 -3.9110122218931175387e-17" xyz="2.7755575615628913511e-17 0.074999999999999955591 -0.14999999999999996669"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part01_pin_1.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part01_pin_1.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -369,7 +369,7 @@
     <visual>
       <origin rpy="-1.57 0 0" xyz="0 -1.1102230246251565404e-16 -0.079999999999999987788"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part02.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part02.stl"/>
       </geometry>
       <material name="part02_material">
         <color rgba="0.77647058823529413463 0.7568627450980391913 0.73725490196078435901 1.0"/>
@@ -378,7 +378,7 @@
     <collision>
       <origin rpy="-1.57 0 0" xyz="0 -1.1102230246251565404e-16 -0.079999999999999987788"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part02.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part02.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -391,7 +391,7 @@
     <visual>
       <origin rpy="1.57 0 0" xyz="0 -2.2204460492503130808e-16 -0.054999999999999882316"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part03.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part03.stl"/>
       </geometry>
       <material name="part03_material">
         <color rgba="0.98039215686274505668 0.71372549019607844922 0.0039215686274509803377 1.0"/>
@@ -400,7 +400,7 @@
     <collision>
       <origin rpy="1.57 0 0" xyz="0 -2.2204460492503130808e-16 -0.054999999999999882316"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part03.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part03.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -413,7 +413,7 @@
     <visual>
       <origin rpy="-3.14 -1.57 0" xyz="0.060000000000000053291 0.14000000000000012434 0.054999999999999993339"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part04.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part04.stl"/>
       </geometry>
       <material name="part04_material">
         <color rgba="0.76862745098039220171 0.88627450980392152857 0.95294117647058818044 1.0"/>
@@ -422,7 +422,7 @@
     <collision>
       <origin rpy="-3.14 -1.57 0" xyz="0.060000000000000053291 0.14000000000000012434 0.054999999999999993339"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part04.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part04.stl"/>
       </geometry>
     </collision>
     <inertial>
@@ -433,7 +433,7 @@
     <visual>
       <origin rpy="-1.57 0 3" xyz="0.078718096856630614955 0.97961106773940276327 0.054999999999992416067"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket.stl"/>
       </geometry>
       <material name="bucket_material">
         <color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0"/>
@@ -442,13 +442,13 @@
     <collision>
       <origin rpy="-1.57 0 3" xyz="0.078718096856630614955 0.97961106773940276327 0.054999999999992416067"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket.stl"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="-4.71 -1.57 0" xyz="0.16999999999999237943 0.30800000000000604672 0.054999999999999299449"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket_mount.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket_mount.stl"/>
       </geometry>
       <material name="bucket_mount_material">
         <color rgba="0.49803921568627451677 0.49803921568627451677 0.49803921568627451677 1.0"/>
@@ -457,7 +457,7 @@
     <collision>
       <origin rpy="-4.71 -1.57 0" xyz="0.16999999999999237943 0.30800000000000604672 0.054999999999999299449"/>
       <geometry>
-        <mesh filename="file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket_mount.stl"/>
+        <mesh filename="file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket_mount.stl"/>
       </geometry>
     </collision>
   </link>
@@ -646,7 +646,7 @@
   <gazebo>
     <!-- <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so"> -->
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>/home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/params/vc.yaml</parameters>
+      <parameters>/home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/params/vc.yaml</parameters>
       <controller_manager_name>controller_manager</controller_manager_name>
     </plugin>
   </gazebo>

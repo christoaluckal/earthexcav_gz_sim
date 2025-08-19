@@ -18,7 +18,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_frame_body.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_frame_body.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -27,7 +27,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_frame_body.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_frame_body.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -71,7 +71,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_cabin_body.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_cabin_body.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -80,7 +80,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_cabin_body.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_cabin_body.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -124,7 +124,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part01_pin_1.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part01_pin_1.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -133,7 +133,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part01_pin_1.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part01_pin_1.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -177,7 +177,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part02.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part02.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -186,7 +186,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part02.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part02.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -230,7 +230,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part03.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part03.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -239,7 +239,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part03.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part03.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -283,7 +283,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part04.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part04.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -292,7 +292,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -301,7 +301,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket_mount.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket_mount.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -310,7 +310,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/part04.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/part04.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -319,7 +319,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -328,7 +328,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/bucket_mount.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/bucket_mount.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -372,7 +372,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -390,7 +390,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -443,7 +443,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -461,7 +461,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -514,7 +514,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/push_blade_bucket.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/push_blade_bucket.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -523,7 +523,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/push_blade_bucket.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/push_blade_bucket.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -567,7 +567,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -585,7 +585,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_front_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_front_wheel.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -638,7 +638,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -656,7 +656,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/meshes/compact_excavator_main_drive_wheel.stl</uri>
+            <uri>file:///home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/meshes/compact_excavator_main_drive_wheel.stl</uri>
           </mesh>
         </geometry>
       </visual>
@@ -672,7 +672,7 @@
     </link>
     <static>0</static>
     <plugin name='gz_ros2_control::GazeboSimROS2ControlPlugin' filename='gz_ros2_control-system'>
-      <parameters>/home/moog-2/nav2_ws/install/sambot_description/share/sambot_description/params/vc.yaml</parameters>
+      <parameters>/home/moog-2/nav2_ws/install/earth_gz_ign/share/earth_gz_ign/params/vc.yaml</parameters>
       <controller_manager_name>controller_manager</controller_manager_name>
     </plugin>
   </model>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="mesh_root" value="file://$(find sambot_description)/meshes"/>
+    <xacro:property name="mesh_root" value="file://$(find earth_gz_ign)/meshes"/>
 
     <!-- MAIN LINK NAMES -->
     <xacro:property name="base_link_name" value="base_link"/>

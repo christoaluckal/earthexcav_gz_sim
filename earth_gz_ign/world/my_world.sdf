@@ -27,21 +27,21 @@
       </link>
     </model>
     <model name="my_mesh">
-      <pose>2 0 -1  0 0 0</pose>
+      <pose>2 -1 -1  0 0 0</pose>
       <static>true</static>
       <link name="body">
         <visual name="visual">
           <geometry>
-            <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/sambot_description/world/landscape_mound.dae</uri></mesh>
-            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/sambot_description/world/landscape_hole.dae</uri></mesh> -->
-            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/sambot_description/world/landscape.dae</uri></mesh> -->
+            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape_mound.dae</uri></mesh> -->
+            <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape_hole.dae</uri></mesh>
+            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape.dae</uri></mesh> -->
           </geometry>
         </visual>
         <collision name="collision">
           <geometry>
-            <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/sambot_description/world/landscape_mound.dae</uri></mesh>
-            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/sambot_description/world/landscape_hole.dae</uri></mesh> -->
-            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/sambot_description/world/landscape.dae</uri></mesh> -->
+            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape_mound.dae</uri></mesh> -->
+            <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape_hole.dae</uri></mesh>
+            <!-- <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape.dae</uri></mesh> -->
           </geometry>
           <surface>
             <friction>
@@ -64,12 +64,12 @@
         <origin pose="0 0 0.1 0 0 0"/>
         <collision name="small_wall_1_collision">
             <geometry>
-                <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/sambot_description/world/landscape_mound.dae</uri></mesh>
+                <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape_mound.dae</uri></mesh>
             </geometry>
         </collision>
         <visual name="small_wall_1_visual" cast_shadows="false">
             <geometry>
-                <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/sambot_description/world/landscape_mound.dae</uri></mesh>
+                <mesh><uri>file:///home/moog-2/nav2_ws/src/nav2_dev/earth_gz_ign/world/landscape_mound.dae</uri></mesh>
             </geometry>
         </visual>
     </link>

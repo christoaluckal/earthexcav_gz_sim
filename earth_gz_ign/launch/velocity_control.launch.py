@@ -34,17 +34,17 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name='xacro')]),
             ' ',
             PathJoinSubstitution(
-                [FindPackageShare('sambot_description'),
-                 'urdf', 'robot_effort.xacro']
+                [FindPackageShare('earth_gz_ign'),
+                 'urdf', 'robot.xacro']
             ),
         ]
     )
     robot_description = {'robot_description': robot_description_content}
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare('sambot_description'),
+            FindPackageShare('earth_gz_ign'),
             'params',
-            'ec.yaml',
+            'vc.yaml',
         ]
     )
 
@@ -165,7 +165,7 @@ def generate_launch_description():
             'use_sim_time',
             default_value=use_sim_time,
             description='If true, use simulated clock'),
-        # deltacan_to_gz,
-        # joy,
-        # joy_to_deltacan,
+        deltacan_to_gz,
+        joy,
+        joy_to_deltacan,
     ])
