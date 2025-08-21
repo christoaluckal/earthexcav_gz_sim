@@ -5,7 +5,7 @@ gz_ros_control:
 
 controller_manager:
   ros__parameters:
-    update_rate: 1000
+    update_rate: 20
 
     # swing_to_boom_controller:
     #   type: velocity_controllers/JointGroupVelocityController
