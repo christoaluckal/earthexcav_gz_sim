@@ -123,7 +123,7 @@ class AbstractController(Node):
         w_out = []
         for i in range(self.num_joints):
             if abs(u[i]) > 1e-3:
-                if abs(self.last_u[i] - u[i]) > 1e-3:
+                if abs(self.last_u[i] - u[i]) > 0.1:
                     self.start_times[i] = now
                 t_elapsed = now - self.start_times[i] if self.start_times[i] is not None else 0.0
                 scale = self.compute_wi(i, t_elapsed)

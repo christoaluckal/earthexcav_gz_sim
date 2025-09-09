@@ -82,7 +82,20 @@
                 <parameters>$(find earth_gz_ign)/params/vc.yaml</parameters>
                 <controller_manager_name>controller_manager</controller_manager_name>
             </plugin>
+            
+            <plugin
+                filename="libignition-gazebo-diff-drive-system.so"
+                name="ignition::gazebo::systems::DiffDrive">
+                <left_joint>left_spinning_to_turret</left_joint>
+                <right_joint>right_spinning_to_turret</right_joint>
+                <wheel_separation>1.2</wheel_separation>
+                <wheel_radius>0.4</wheel_radius>
+                <odom_publish_frequency>1</odom_publish_frequency>
+                <topic>cmd_vel</topic>
+            </plugin>
+
         </gazebo>
+
         <!-- <gazebo>
             <plugin name="two_wheeled_robot_diff_drive" filename="libgazebo_ros_diff_drive.so">
                 <num_wheel_pairs>2</num_wheel_pairs>
