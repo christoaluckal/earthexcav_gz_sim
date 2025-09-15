@@ -133,10 +133,17 @@ def generate_launch_description():
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock'],
-        parameters=[bridge_config_path],
+        arguments=['/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+                   '/demo/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
+                   '/demo/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist'
+                   ],
+        parameters=[{
+            'config_file': bridge_config_path,  
+        }],
         output='screen'
     )
+
+
 
     return LaunchDescription([
         # Launch gazebo environment

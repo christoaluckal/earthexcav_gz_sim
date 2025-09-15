@@ -83,15 +83,17 @@
                 <controller_manager_name>controller_manager</controller_manager_name>
             </plugin>
             
-            <plugin
-                filename="libignition-gazebo-diff-drive-system.so"
-                name="ignition::gazebo::systems::DiffDrive">
-                <left_joint>left_spinning_to_turret</left_joint>
-                <right_joint>right_spinning_to_turret</right_joint>
-                <wheel_separation>1.2</wheel_separation>
-                <wheel_radius>0.4</wheel_radius>
-                <odom_publish_frequency>1</odom_publish_frequency>
-                <topic>cmd_vel</topic>
+            <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+            <left_joint>left_spinning_to_turret</left_joint>
+            <right_joint>right_spinning_to_turret</right_joint>
+            <wheel_separation>1.2</wheel_separation>
+            <wheel_radius>${wheel_radius}</wheel_radius>
+            <max_linear_acceleration>0.1</max_linear_acceleration>
+            <topic>/demo/cmd_vel</topic>
+            <odom_topic>/demo/odom</odom_topic>
+            <tf_topic>/tf</tf_topic>
+            <frame_id>odom</frame_id>
+            <child_frame_id>base_link</child_frame_id>
             </plugin>
 
         </gazebo>
