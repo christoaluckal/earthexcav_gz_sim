@@ -15,7 +15,15 @@ def generate_launch_description():
         parameters=[parameter]
     )
 
+    repub_Node = Node(
+        package='deltacan_to_gz',
+        executable='odom_republisher_exe',
+        name='odom_republisher',
+        output='screen',
+    )
+
 
     ld.add_action(converter_node)
+    ld.add_action(repub_Node)
 
     return ld

@@ -25,6 +25,7 @@ setup(
         'console_scripts': [
             'control_exe = deltacan_to_gz.controller:main',
             'joy_to_deltacan_exe = deltacan_to_gz.joy_to_deltacan:main',
+            'odom_republisher_exe = deltacan_to_gz.odom_republisher:main',
         ],
     },
 )
