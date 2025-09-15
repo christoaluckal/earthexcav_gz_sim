@@ -39,7 +39,7 @@ def generate_launch_description():
             ),
         ]
     )
-    bridge_config_path = PathJoinSubstitution([FindPackageShare('earth_gz_ign'), 'config', 'bridge.yaml'])
+    bridge_config_path = PathJoinSubstitution([FindPackageShare('earth_gz_ign'), 'params', 'bridge.yaml'])
     robot_description = {'robot_description': robot_description_content}
     robot_controllers = PathJoinSubstitution(
         [
@@ -90,6 +90,13 @@ def generate_launch_description():
         output='screen',
     )
 
+    odom_republisher = Node(
+        package='deltacan_to_gz',
+        executable='odom_republisher_exe',
+        name='odom_republisher',
+        output='screen',
+    )
+
     # swing_to_boom_controller = Node(
     #     package = 'controller_manager',
     #     executable = 'spawner',
@@ -133,10 +140,6 @@ def generate_launch_description():
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
-                   '/demo/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
-                   '/demo/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist'
-                   ],
         parameters=[{
             'config_file': bridge_config_path,  
         }],
@@ -177,4 +180,5 @@ def generate_launch_description():
         deltacan_to_gz,
         joy,
         joy_to_deltacan,
+        odom_republisher,
     ])
