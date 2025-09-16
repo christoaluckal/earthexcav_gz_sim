@@ -85,7 +85,9 @@
             
             <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
             <left_joint>left_spinning_to_turret</left_joint>
+            <left_joint>left_front_to_turret</left_joint>
             <right_joint>right_spinning_to_turret</right_joint>
+            <right_joint>right_front_to_turret</right_joint>
             <wheel_separation>1.2</wheel_separation>
             <wheel_radius>${wheel_radius}</wheel_radius>
             <max_linear_acceleration>0.5</max_linear_acceleration>
@@ -102,6 +104,7 @@
                 <use_pose_vector_msg>true</use_pose_vector_msg>
                 <publish_nested_model_pose>true</publish_nested_model_pose>
             </plugin>
+            
 
         </gazebo>
 

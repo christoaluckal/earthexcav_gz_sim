@@ -154,7 +154,7 @@
     <xacro:property name="wheel_length" value="0.2"/>
     
     <xacro:macro name="skid_wheel" params="wheel_name mu1 mu2">
-        <xacro:property name="wheel_mass" value="${3.1415*(wheel_radius**2)*wheel_length*rubber_density}"/>
+        <xacro:property name="wheel_mass" value="${2*3.1415*(wheel_radius**2)*wheel_length*rubber_density}"/>
         <xacro:property name="wheel_ixx" value="${(1/12)*wheel_mass*(3*wheel_radius**2 + wheel_length**2)}"/>
         <xacro:property name="wheel_iyy" value="${(1/12)*wheel_mass*(3*wheel_radius**2 + wheel_length**2)}"/>
         <xacro:property name="wheel_izz" value="${(1/2)*wheel_mass*wheel_radius**2}"/>
@@ -175,10 +175,17 @@
                 </geometry>
             </collision>
             <surface>
+                <contact>
+                    <ode>
+                    <contact_surface_layer>0.001</contact_surface_layer>
+                    </ode>
+                </contact>
                 <friction>
                     <ode>
                         <mu>${mu1}</mu>
                         <mu2>${mu2}</mu2>
+                        <slip1>0.0</slip1>
+                        <slip2>0.0</slip2>
                     </ode>
                 </friction>
             </surface>
